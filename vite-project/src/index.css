@@ -1,10 +1,14 @@
+body {
+
+  overflow: hidden;
+}
+
 .welcome {
   text-align: center;
 }
 
 nav {
-  width: 100%;
-  height: 40px;
+  height: 30px;
   background-color: rgba(11, 222, 7, 0.116);
   display: flex;
   justify-content: end;
@@ -12,17 +16,104 @@ nav {
 
 nav div {
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
+  align-items: center;
 }
 
 
 nav a {
   font-size: 1.5rem;
   color: #0a0a0a;
-  margin: 10px;
+  padding: 10px;
   text-decoration: none;
 }
 
 nav a:hover {
   color: rgba(5, 204, 15, 0.338);
+}
+
+.sigths {
+  height: 70vh;
+  width: 100%;
+  background-color: black;
+  margin: 0px;
+}
+
+.sigthsScroll {
+  gap: 4vmin;
+}
+
+.leaf {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.leaf1 img {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  animation: fallLeaf 5s linear infinite 0.2s;
+}
+
+.leaf2 img {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  animation: fallLeaf 5s linear infinite 0.1s;
+}
+
+.leaf3 img {
+  position: absolute;
+  top: 0;
+  left: 70%;
+  animation: fallLeaf 5s linear infinite;
+}
+
+.leaf4 img {
+  position: absolute;
+  top: 0;
+  left: 79%;
+  animation: fallLeaf 5s linear infinite;
+}
+
+.leaf1 img:hover,
+.leaf2 img:hover,
+.leaf3 img:hover,
+.leaf4 img:hover {
+  animation-play-state: paused;
+}
+
+
+@keyframes fallLeaf {
+  0% {
+    opacity: 1;
+    transform: translateY(0%) rotate(0deg)
+  }
+
+  20% {
+    opacity: 0.8;
+    transform: translateY(20vh) rotate(60deg)
+  }
+
+  40% {
+    opacity: 0.6;
+    transform: translateY(40vh) rotate(120deg)
+  }
+
+  60% {
+    opacity: 0.4;
+    transform: translateY(60vh) rotate(180deg)
+  }
+
+  80% {
+    opacity: 0.2;
+    transform: translateY(80vh) rotate(240deg)
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(300deg)
+  }
 }

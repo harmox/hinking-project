@@ -7,11 +7,11 @@ function Navigation() {
                     <a href="/dashboard">Dashboard</a>
                     <a href="/search">Search</a>
                 </div>
-                <div class="user">
-                    <a href="/create">Add Animal</a>
+                <div className="user">
+                    <a href="/create">Add journey</a>
                     <a href="/logout">Logout</a>
                 </div>
-                <div class="guest">
+                <div className="guest">
                     <a href="/login">Login</a>
                     <a href="/register">Register</a>
                 </div>

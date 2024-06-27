@@ -1,13 +1,13 @@
 import Navigation from './Nav.jsx'
+import GaleryScroll from './GaleryScroll.jsx'
 
 function App() {
+
 
   return (
     <>
       <Navigation />
-      <div className='welcome'>
-        <h1>Welcome to mountains</h1>
-      </div>
+      <GaleryScroll />
     </>
   )
 }
