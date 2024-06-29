@@ -11,17 +11,35 @@ function GaleryScroll() {
     }, []);
     return (
         <div className='welcome'>
-            <div className='leaf leaf1'><img src="http://www.pngmart.com/files/1/Fall-Autumn-Leaves-Transparent-PNG.png" height="75px" width="75px"></img></div>
-            <div className='leaf leaf2'><img src="http://www.pngmart.com/files/1/Transparent-Autumn-Leaves-Falling-PNG.png" height="75px" width="75px"></img></div>
-            <div className='leaf leaf3'><img src="http://www.pngmart.com/files/1/Autumn-Fall-Leaves-Pictures-Collage-PNG.png" height="75px" width="75px"></img></div>
-            <div className='leaf leaf4'><img src="http://www.pngmart.com/files/1/Green-Leaves-PNG-File.png" height="75px" width="75px"></img></div>
+            <div className='leaf leaf1'><img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Winter-PNG/Blue_Snowflake_PNG_Transparent_Clipart.png?m=1637310419" height="75px" width="75px"></img></div>
+            <div className='leaf leaf2'><img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Winter-PNG/Blue_Snowflake_PNG_Transparent_Clipart.png?m=1637310419" height="75px" width="75px"></img></div>
+            <div className='leaf leaf3'><img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Winter-PNG/Blue_Snowflake_PNG_Transparent_Clipart.png?m=1637310419" height="75px" width="75px"></img></div>
+            <div className='leaf leaf4'><img src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Winter-PNG/Blue_Snowflake_PNG_Transparent_Clipart.png?m=1637310419" height="75px" width="75px"></img></div>
             <h1>Explore the horizont and escape reallity</h1>
 
             <div className='sigths'>
-                <p>Sights you can visit</p>
+                <h2>Best rating sigths</h2>
                 <div className='sigthsScroll' data-mouse-down-at="0" data-prev-percentage="0">
                     {/*TODO generate img from dataBase*/}
-                    <img src="/rilski.jpg" alt="rilski" />
+
+                    <div className='card'>
+                        <h3> place name</h3>
+                        <img src="/rilski.jpg" alt="rilski" height="300" />
+                        <a href="/details/"><button>Details</button></a>
+                    </div>
+                    <div className='card'>
+                        <h3> place name</h3>
+                        <img src="/rilski.jpg" alt="rilski" height="300" />
+                        <button>Details</button>
+
+                    </div>
+                    <div className='card'>
+                        <h3> place name</h3>
+                        <img src="/rilski.jpg" alt="rilski" height="300" />
+                        <button>Details</button>
+                    </div>
+
+
                 </div>
             </div>
         </div>

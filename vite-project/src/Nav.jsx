@@ -4,7 +4,7 @@ function Navigation() {
             <nav>
                 <div>
                     <a href="/">Home</a>
-                    <a href="/dashboard">Dashboard</a>
+                    <a href="/dashboard">Catalog</a>
                     <a href="/search">Search</a>
                 </div>
                 <div className="user">

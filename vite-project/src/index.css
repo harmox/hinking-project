@@ -84,7 +84,7 @@ body {
 
 .cloud {
   bottom: 100px;
-  animation: cloud 5s infinite linear;
+  animation: cloud 30s infinite linear;
 }
 
 @keyframes cloud {
@@ -117,7 +117,7 @@ body {
 
 nav {
   height: 30px;
-  background-color: rgba(0, 0, 0, 0.959);
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0) 40%, rgba(0, 212, 255, 0.1) 80%);
   display: flex;
   justify-content: end;
 }
@@ -131,24 +131,49 @@ nav div {
 
 nav a {
   font-size: 1.5rem;
-  color: #ff0000;
+  color: rgb(0, 0, 0);
   padding: 10px;
   text-decoration: none;
 }
 
 nav a:hover {
-  color: rgba(5, 204, 15, 0.338);
+  color: #7852ff;
 }
 
 .sigths {
   height: 70vh;
   width: 100%;
-  background-color: black;
+  background: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
   margin: 0px;
 }
 
 .sigthsScroll {
-  gap: 4vmin;
+  display: flex;
+  padding: 20px;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+nav a:hover {
+  transform: scale(1.1);
+}
+
+.catalog {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 90vh;
+  width: 100%;
+  background-color: rgb(245, 238, 238);
 }
 
 .leaf {
@@ -229,39 +254,51 @@ nav a:hover {
 
 
 
-.formContainer{
+.formContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
+  backdrop-filter: blur(3px);
 }
+
 form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 400px;
   height: 300px;
-  background: rgba(130,130,130,.3);
+  background: rgba(130, 130, 130, .3);
   padding: 20px 22px;
   border: 1px solid;
-  border-color: rgba(255,255,255,.4);
+  border-color: rgba(255, 255, 255, .4);
 }
 
-form input, form button {
+.addSigth {
+  width: 400px;
+  height: 600px;
+  margin-bottom: 30px;
+}
+
+form input,
+form button {
   display: flex;
   align-self: center;
   width: 250px;
   border: 1px solid;
-  border-color: rgba(80,80,80,.45);
+  border-color: rgba(80, 80, 80, .45);
   padding: 12px 20px 12px 8px;
   font: bold .875em/1.25em "Open Sans Condensed", sans-serif;
   letter-spacing: .075em;
-  color: #fff;
-  margin-bottom:30px;
+  color: #225556;
+  margin-bottom: 30px;
 }
 
-form input:focus { background-color: rgba(119, 129, 239, 0.4); }
+
+form input:focus {
+  background-color: rgba(119, 129, 239, 0.4);
+}
 
 form input.email {
   background-position: 220px 10px;
@@ -271,12 +308,25 @@ form input.pass {
   background-position: 223px 8px
 }
 
-::-webkit-input-placeholder { color: #ccc; text-transform: uppercase; }
-::-moz-placeholder { color: #ccc; text-transform: uppercase; }
-:-ms-input-placeholder { color: #ccc; text-transform: uppercase; }
+::-webkit-input-placeholder {
+  color: #ccc;
+  text-transform: uppercase;
+}
 
-form button[type=submit] {
+::-moz-placeholder {
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+:-ms-input-placeholder {
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+form button[type=submit],
+button {
   width: 248px;
+  justify-content: center;
   margin-bottom: 0;
   color: #3f898a;
   text-transform: uppercase;
