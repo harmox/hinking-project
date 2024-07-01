@@ -7,10 +7,10 @@ function LogIn() {
                 <form action="">
 
                     <label for=""></label>
-                    <input type="text" name="email" id="" placeholder="email" class="email" />
+                    <input type="text" name="email" id="" placeholder="email" className="email" />
 
                     <label for=""></label>
-                    <input type="password" name="password" id="" placeholder="password" class="pass" />
+                    <input type="password" name="password" id="" placeholder="password" className="pass" />
 
                     <button type="submit">login to your account</button>
 

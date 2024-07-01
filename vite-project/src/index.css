@@ -23,21 +23,19 @@ body {
   border-left: 150px solid transparent;
   border-right: 150px solid transparent;
   border-bottom: 180px solid #7ac1e4;
-  z-index: 1;
+  z-index: -1;
 }
 
 .mountain-two {
   left: 80px;
   bottom: -20px;
   opacity: .3;
-  z-index: 0;
 }
 
 .mountain-three {
   left: -60px;
   bottom: -10px;
   opacity: .5;
-  z-index: 0;
 }
 
 .mountain-top {
@@ -143,8 +141,13 @@ nav a:hover {
 .sigths {
   height: 70vh;
   width: 100%;
-  background: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
   margin: 0px;
+}
+
+.sigths p{
+  font-size: 20px;
+  background: rgb(1,181,249);
+  background: linear-gradient(90deg, rgba(1,181,249,0.38071897704394255) 7%, rgba(241,218,31,0.2311391451111695) 93%);
 }
 
 .sigthsScroll {
@@ -153,17 +156,27 @@ nav a:hover {
   justify-content: space-around;
 }
 
-.card {
+.card ,.searchForm{
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 300px;
+  height: 300px;
+  margin: 20px;
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  background-color: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
+  padding: 20px;
+}
+
+.card img {
+  border-radius: 20px;
 }
 
 
-
-
-nav a:hover {
-  transform: scale(1.1);
+.sigthsScroll .card {
+  width: 500px;
+  height: 400px;
 }
 
 .catalog {
@@ -173,8 +186,18 @@ nav a:hover {
   flex-wrap: wrap;
   height: 90vh;
   width: 100%;
-  background-color: rgb(245, 238, 238);
+  background: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
+  overflow: auto;
+  padding: 10px;
 }
+
+
+
+
+nav a:hover {
+  transform: scale(1.1);
+}
+
 
 .leaf {
   width: 100%;
@@ -333,4 +356,12 @@ button {
   background: #225556;
   border-color: #9fb5b5;
   cursor: pointer;
+}
+
+.searchDiv {
+  display: inline-block;
+  justify-content: center;
+}
+.details{
+  display:flex;
 }

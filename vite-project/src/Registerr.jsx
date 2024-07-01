@@ -6,12 +6,12 @@ function Register() {
             <form action="">
 
                 <label for=""></label>
-                <input type="text" name="username" id="" placeholder="email" class="email" />
+                <input type="text" name="username" id="" placeholder="email" className="email" />
 
                 <label for=""></label>
-                <input type="password" name="password" id="" placeholder="password" class="pass" />
+                <input type="password" name="password" id="" placeholder="password" className="pass" />
                 <label for=""></label>
-                <input type="password" name="repass" id="" placeholder="repeat password" class="pass" />
+                <input type="password" name="repass" id="" placeholder="repeat password" className="pass" />
 
                 <button type="submit">Register your accaunt</button>
 

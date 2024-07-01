@@ -7,7 +7,7 @@ function Add() {
                 <form className="addSigth">
 
                     <label for="name"></label>
-                    <input type="text" name="name" id="" placeholder="name" class="name" />
+                    <input type="text" name="name" id="" placeholder="name" className="name" />
 
                     <label for="elevation"></label>
                     <input type="number" name="elevation" id="" placeholder="elevation in meters" class="elevation" />
@@ -22,7 +22,7 @@ function Add() {
                     <input type="text" name="image" id="" placeholder="image" class="image" />
 
                     <label for=""></label>
-                    <input type="text" name="password" id="" placeholder="description" class="pass" /> 
+                    <input type="text" name="description" id="" placeholder="description" class="description" /> 
 
                     <button type="submit">Add sigth</button>
 
