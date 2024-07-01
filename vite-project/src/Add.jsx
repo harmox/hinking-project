@@ -18,6 +18,12 @@ function Add() {
                     <label for="distance"></label>
                     <input type="number" name="time" id="" placeholder="ascend time in hours" class="time"/>
 
+                    <label for="longitude"></label>
+                    <input type="number" name="longitude" id="" placeholder="longitude" class="longitude" step="0.001"/>
+
+                    <label for="latitude"></label>
+                    <input type="number" name="latitude" id="" placeholder="latitude" class="latitude"step="0.001"/>
+
                     <label for="image"></label>
                     <input type="text" name="image" id="" placeholder="image" class="image" />
 

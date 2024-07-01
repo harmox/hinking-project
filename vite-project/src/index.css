@@ -144,10 +144,10 @@ nav a:hover {
   margin: 0px;
 }
 
-.sigths p{
+.sigths p {
   font-size: 20px;
-  background: rgb(1,181,249);
-  background: linear-gradient(90deg, rgba(1,181,249,0.38071897704394255) 7%, rgba(241,218,31,0.2311391451111695) 93%);
+  background: rgb(1, 181, 249);
+  background: linear-gradient(90deg, rgba(1, 181, 249, 0.38071897704394255) 7%, rgba(241, 218, 31, 0.2311391451111695) 93%);
 }
 
 .sigthsScroll {
@@ -156,7 +156,8 @@ nav a:hover {
   justify-content: space-around;
 }
 
-.card ,.searchForm{
+.card,
+.searchForm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -300,7 +301,7 @@ form {
 
 .addSigth {
   width: 400px;
-  height: 600px;
+  height: 700px;
   margin-bottom: 30px;
 }
 
@@ -362,6 +363,40 @@ button {
   display: inline-block;
   justify-content: center;
 }
-.details{
-  display:flex;
+
+.details {
+  display: flex;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.containerDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+.buttonPair {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px; 
+}
+
+.buttonPair button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.checkWeather {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+
+}
+.centerForm {
+  display: flex;
+  align-items: center;
 }

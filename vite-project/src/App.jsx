@@ -15,9 +15,9 @@ function App() {
       <Details />
       {/* <Search/> */}
       {/* <Catalog /> */}
-      {/* <Add /> */}
+      {/* <Add />  */}
       {/* <GaleryScroll /> */}
-      {/* <Register /> */}
+      {/* <Register />*/}
       {/* <LogIn /> */}
     </>
   )
