@@ -1,19 +1,21 @@
 import { useState } from "react";
 
 const api = {
-    key: "bad6cea6cef7df4ca31499f8ecfca4f7",
-    base: "https://api.openweathermap.org/data/2.5/",
+    key: "FZP48UWCAWRCQ59J8PPXRSUAD",
+    base: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/",
 };
 //TODO use and get from   open-meteo
 function Details() {
-    const [search, setSearch] = useState("");
+    const [date, setDate] = useState("");
     const [weather, setWeather] = useState({});
-    console.log(weather)
+
     async function searchPressed(e) {
         e.preventDefault()
-        fetch(`${api.base}weather?q=${search}&units=metric&APPID=${api.key}`)
+        await fetch(`${api.base}${`lan`, `lon`}/${date}?unitGroup=metric&include=days&key=${api.key}&contentType=json`)
             .then((res) => res.json())
             .then((result) => {
+                console.log(weather)
+                console.log(`fetch data`)
                 setWeather(result);
             });
     }
@@ -42,13 +44,8 @@ function Details() {
             <div className="checkWeather">
                 <form className="centerForm" onSubmit={searchPressed} >
                     <h4 >Check weather:</h4>
-                    <input
-                        type="text"
-                        placeholder="Enter city/town..."
-                        onChange={(e) => setSearch(e.target.value)}
-                    />
                     <input type="date"
-                        id="Test_DatetimeLocal" name="date" />
+                        id="Test_DatetimeLocal" name="date" onChange={(e) => setDate(e.target.value)} />
                     <button type="submit">check</button>
                 </form>
                 <div className="weatherResult">
