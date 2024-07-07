@@ -1,12 +1,31 @@
-import registerR from "./utils/register.js"
+import {registerR} from "../utils/api.js"
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    const navigate = useNavigate();
+
     async function registerHandler(e) {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const { email, password, repass } = Object.fromEntries(formData)
         try {
-            registerR({ email, password, repass })
+            if (!email || !password || !repass) {
+                //TODO error
+                return
+            }
+            if (password !== repass) {
+                //TODO error
+                return
+            }
+
+            const response = await registerR({ email, password })
+            const { message, userId } = await response.json()
+            if (response.ok) {
+                localStorage.setItem(`user`, userId)
+                navigate('/');
+            } else {
+                //TODO: handle registration failure (e.g., show error message)
+            }
         } catch (err) {
 
         }

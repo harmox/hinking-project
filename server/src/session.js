@@ -13,7 +13,7 @@ function verifyToken(token) {
     return payload
 }
 function session() {
-    return function (req, res,next) {
+    return function (req, res, next) {
         const token = req.cookies.token
         if (token) {
             try {

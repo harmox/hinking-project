@@ -11,7 +11,6 @@ const secret = `hiking`
 //TODO change on deploy
 mongoose.connect(`mongodb://localhost:27017/hiking`)
 app.use(cors())
-app.use(e.urlencoded({ extended: true }));
 app.use(e.json());
 app.use(cookieParser(secret))
 app.use(session())
