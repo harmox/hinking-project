@@ -12,12 +12,12 @@ function App() {
   return (
     <>
       <Navigation />
-      <Details />
+      {/* <Details /> */}
       {/* <Search/> */}
       {/* <Catalog /> */}
       {/* <Add />  */}
       {/* <GaleryScroll /> */}
-      {/* <Register />*/}
+      <Register />
       {/* <LogIn /> */}
     </>
   )

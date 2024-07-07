@@ -18,7 +18,8 @@ const router = Router()
 router.get(`/`, (req, res) => {
     res.send(`<h1>Hello</h1>`)
 })
-router.get(`/register`, (req, res) => {
+router.post(`/register`, (req, res) => {
+    console.log(req.body)
     res.send(`REGISTER`)
 })
 
