@@ -3,7 +3,8 @@ const URLS = {
     base: `http://localhost:3000`,
     register: `/register`,
     logout: `/logout`,
-    login: `/login`
+    login: `/login`,
+    create: `/create`
 
 }
 
@@ -11,7 +12,7 @@ const opitons = {
     headers: { "Content-Type": "application/json" },
     credentials: 'include'
 }
-
+//TODO handler errors
 async function registerR(data) {
     opitons.body = JSON.stringify(data),
         opitons.method = `post`
@@ -34,8 +35,17 @@ async function login(data) {
 }
 async function logout() {
     opitons.method = `get`
-
     return await fetch(URLS.base + URLS.logout, opitons)
 }
+async function add(data) {
+    opitons.body = JSON.stringify(data),
+        opitons.method = `post`
+    try {
+        const info = await fetch(URLS.base + URLS.create, opitons)
+        return info
+    } catch (err) {
+        console.log(err.message)
+    }
+}
 
-export { registerR, logout, login };
+export { registerR, logout, login, add };

@@ -7,10 +7,7 @@ const hikeSchema = new mongoose.Schema(
             unique: true,
             required: true
         },
-        elevation: {
-            type: Number,
-            required: true
-        },
+
         distance: {
             type: Number,
             required: true
@@ -37,7 +34,7 @@ const hikeSchema = new mongoose.Schema(
             required: true,
             minlength: 10
         },
-        rate: [{
+        visits: [{
             type: mongoose.Types.ObjectId,
             ref: `User`,
             default: []

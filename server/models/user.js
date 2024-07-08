@@ -12,6 +12,16 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        interested: [{
+            type: mongoose.Types.ObjectId,
+            ref: `hikingModel`,
+            default: []
+        }],
+        visits: [{
+            type: mongoose.Types.ObjectId,
+            ref: `hikingModel`,
+            default: []
+        }],
     },
     {
         collation: { locale: `en`, strength: 2 },

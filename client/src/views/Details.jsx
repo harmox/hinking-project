@@ -26,7 +26,6 @@ function Details() {
             <div className="containerDetails">
                 <h1>NAME HERE</h1>
                 <img src="/rilski.jpg" alt="rilski" height="300" />
-                <h3>Elevation: </h3>
                 <h3>Distance in kilometers: </h3>
                 <h3>Ascend: <br />
                     Ascend time is in hours and its for one way only!
@@ -34,7 +33,7 @@ function Details() {
                 <p className="description">asdasdasdadsa</p>
                 <div className="buttonPair">
                     <button type="submit">Interested</button>
-                    <button type="submit">Rate</button>
+                    <button type="submit">Visits</button>
                 </div>
                 <div className="buttonPair">
                     <button type="submit">Edit</button>
