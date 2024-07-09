@@ -144,11 +144,7 @@ nav a:hover {
   margin: 0px;
 }
 
-.sigths p {
-  font-size: 20px;
-  background: rgb(1, 181, 249);
-  background: linear-gradient(90deg, rgba(1, 181, 249, 0.38071897704394255) 7%, rgba(241, 218, 31, 0.2311391451111695) 93%);
-}
+
 
 .sigthsScroll {
   display: flex;
@@ -160,6 +156,7 @@ nav a:hover {
 .searchForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 300px;
   height: 300px;
@@ -216,14 +213,14 @@ nav a:hover {
 }
 
 .leaf1 img {
+  left: 10%;
+  animation: fallLeaf 5s linear 1 0.1s;
+}
+.leaf2 img {
   left: 20%;
   animation: fallLeaf 5s linear 1 0.2s;
 }
 
-.leaf2 img {
-  left: 10%;
-  animation: fallLeaf 5s linear 1 0.1s;
-}
 
 .leaf3 img {
   left: 70%;

@@ -1,0 +1,5 @@
+.p {
+    font-size: 20px;
+    background: rgb(1, 181, 249);
+    background: linear-gradient(90deg, rgba(1, 181, 249, 0.38071897704394255) 7%, rgba(241, 218, 31, 0.2311391451111695) 93%);
+  }

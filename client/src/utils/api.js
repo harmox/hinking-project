@@ -1,10 +1,11 @@
 
 const URLS = {
     base: `http://localhost:3000`,
+    home: `/`,
     register: `/register`,
     logout: `/logout`,
     login: `/login`,
-    create: `/create`
+    create: `/create`,
 
 }
 
@@ -37,6 +38,14 @@ async function logout() {
     opitons.method = `get`
     return await fetch(URLS.base + URLS.logout, opitons)
 }
+async function homeGet() {
+    try {
+        return await fetch(URLS.base + URLS.home)
+    } catch (err) {
+        console.log(err)
+    }
+}
+
 async function add(data) {
     opitons.body = JSON.stringify(data),
         opitons.method = `post`
@@ -48,4 +57,4 @@ async function add(data) {
     }
 }
 
-export { registerR, logout, login, add };
+export { registerR, logout, login, add, homeGet };
