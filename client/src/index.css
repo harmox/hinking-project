@@ -117,15 +117,15 @@ nav {
   height: 30px;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 40%, rgba(0, 212, 255, 0.1) 80%);
   display: flex;
-  justify-content: end;
+  justify-content: space-between;
+  align-items: center;
 }
-
-nav div {
+nav .links,
+.visits {
   display: flex;
   justify-content: end;
   align-items: center;
 }
-
 
 nav a {
   font-size: 1.5rem;
@@ -136,6 +136,7 @@ nav a {
 
 nav a:hover {
   color: #7852ff;
+  transform: scale(1.1);
 }
 
 .sigths {
@@ -164,6 +165,7 @@ nav a:hover {
   box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   background-color: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
+
   padding: 20px;
 }
 
@@ -185,15 +187,9 @@ nav a:hover {
   height: 90vh;
   width: 100%;
   background: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
+  background: linear-gradient(90deg, rgba(255, 123, 123, 0.1) 40%, rgba(0, 212, 255, 0.1) 50%);
   overflow: auto;
   padding: 10px;
-}
-
-
-
-
-nav a:hover {
-  transform: scale(1.1);
 }
 
 
@@ -216,6 +212,7 @@ nav a:hover {
   left: 10%;
   animation: fallLeaf 5s linear 1 0.1s;
 }
+
 .leaf2 img {
   left: 20%;
   animation: fallLeaf 5s linear 1 0.2s;
@@ -347,6 +344,7 @@ form input.pass {
 form button[type=submit],
 button {
   width: 248px;
+  margin-top: 5px;
   justify-content: center;
   margin-bottom: 0;
   color: #3f898a;
@@ -354,46 +352,4 @@ button {
   background: #225556;
   border-color: #9fb5b5;
   cursor: pointer;
-}
-
-.searchDiv {
-  display: inline-block;
-  justify-content: center;
-}
-
-.details {
-  display: flex;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-.containerDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px;
-}
-.buttonPair {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 10px; 
-}
-
-.buttonPair button {
-  flex: 1;
-  margin: 0 5px;
-  padding: 10px;
-}
-
-.checkWeather {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
-
-}
-.centerForm {
-  display: flex;
-  align-items: center;
 }

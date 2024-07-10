@@ -1,0 +1,67 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 750px;
+    box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    margin-top: 5px;
+    background-color: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+p {
+    width: 100%;
+    overflow-wrap: break-word;
+    text-align: justify;
+    margin-top: 10px;
+
+}
+
+.details {
+    display: flex;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.containerDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 40px;
+}
+
+.buttonPair {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.buttonPair button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+}
+
+.card img {
+    max-width: 75%;
+    border-radius: 20px;
+}
+
+.checkWeather {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+
+}
+
+.centerForm {
+    display: flex;
+    align-items: center;
+}

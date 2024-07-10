@@ -30,8 +30,8 @@ function Add() {
         }
 
     }
-    function er(it, len = 1) {
-        if (!it || it.length < len) {
+    function er(it, len = 1, max = 350) {
+        if (!it || it.length < len || it.length > 350) {
             return true
         }
     }

@@ -1,11 +1,10 @@
 import { login } from "../utils/api.js"
 import { useNavigate } from "react-router-dom"
 
-function LogIn() {
-
+function LogIn({ setIsUserLoggedIn }) {
     const navigate = useNavigate()
 
-    async function onSubmit(e) {
+    async function logInHandler(e) {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const { email, password } = Object.fromEntries(formData)
@@ -18,9 +17,11 @@ function LogIn() {
             const { message, userId } = await response.json()
             if (response.ok) {
                 localStorage.setItem(`user`, userId)
+                setIsUserLoggedIn(true);
                 navigate('/');
             } else {
-                //TODO: handle registration failure (e.g., show error message)
+                console.log(message)
+                //TODO: handle registration failure 
             }
         } catch (err) {
 
@@ -30,7 +31,7 @@ function LogIn() {
         <>
             <div className="formContainer">
 
-                <form action="" onSubmit={onSubmit}>
+                <form action="" onSubmit={logInHandler}>
 
                     <input type="text" name="email" id="" placeholder="email" className="email" />
 

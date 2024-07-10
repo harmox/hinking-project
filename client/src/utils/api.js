@@ -6,6 +6,8 @@ const URLS = {
     logout: `/logout`,
     login: `/login`,
     create: `/create`,
+    catalog: `/catalog`,
+    details: `/details/`
 
 }
 
@@ -45,6 +47,13 @@ async function homeGet() {
         console.log(err)
     }
 }
+async function catalogGet() {
+    try {
+        return await fetch(URLS.base + URLS.catalog)
+    } catch (err) {
+        console.log(err)
+    }
+}
 
 async function add(data) {
     opitons.body = JSON.stringify(data),
@@ -56,5 +65,12 @@ async function add(data) {
         console.log(err.message)
     }
 }
+async function details(id) {
+    try {
+        return await fetch(URLS.base + URLS.details + id)
+    } catch (err) {
+        console.log(err)
+    }
+}
 
-export { registerR, logout, login, add, homeGet };
+export { registerR, logout, login, add, homeGet, catalogGet, details };

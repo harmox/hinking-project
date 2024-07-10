@@ -1,7 +1,7 @@
-import {registerR} from "../utils/api.js"
+import { registerR } from "../utils/api.js"
 import { useNavigate } from 'react-router-dom';
 
-function Register() {
+function Register({setIsUserLoggedIn}) {
     const navigate = useNavigate();
 
     async function registerHandler(e) {
@@ -22,12 +22,14 @@ function Register() {
             const { message, userId } = await response.json()
             if (response.ok) {
                 localStorage.setItem(`user`, userId)
+                setIsUserLoggedIn(true)
                 navigate('/');
             } else {
-                //TODO: handle registration failure (e.g., show error message)
+                console.log(message)
+                //TODO: handle registration failure 
             }
         } catch (err) {
-
+            console.log(err.message)
         }
         // console.log(email, password, repass)
 
