@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../details.module.css"
 import { useParams } from 'react-router-dom';
 import { details } from "../utils/api.js";
+import weather_icons from "./icons.js"
 
 const api = {
     key: "FZP48UWCAWRCQ59J8PPXRSUAD",
@@ -14,6 +15,7 @@ function Details() {
     const [date, setDate] = useState("");
     const [weather, setWeather] = useState({});
     const [owner, setIsOwner] = useState({});
+    const [isWeatherFetched, setIsWeatherFetched] = useState(false);
     useEffect(() => {
         (async function Gal() {
             try {
@@ -26,20 +28,18 @@ function Details() {
             }
         })();
     }, []);
+    console.log(weather)
 
     async function searchPressed(e) {
         e.preventDefault()
+        if (!date) { return }
         try {
-
-            await fetch(`${api.base}${data.longitude},${data.latitude}/${date}?unitGroup=metric&include=days&key=${api.key}&contentType=json`)
-                .then((res) => res.json())
-                .then((result) => {
-                    console.log(weather)
-                    console.log(`fetch data`)
-                    setWeather(result);
-                });
+            const res = await fetch(`${api.base}${data.longitude},${data.latitude}/${date}?iconSet=icons1&&unitGroup=metric&include=days&key=${api.key}&contentType=json`);
+            const result = await res.json();
+            setWeather(result);
+            setIsWeatherFetched(true);
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
     //TODO check if owner 
@@ -72,13 +72,19 @@ function Details() {
                         id="Test_DatetimeLocal" name="date" onChange={(e) => setDate(e.target.value)} />
                     <button type="submit">check</button>
                 </form>
-                <div className={styles.weatherResult}>
-                    <h2>max Temperature</h2>
-                    <h2>max Temperature</h2>
-                    <h2>max Temperature</h2>
-                </div>
+                {isWeatherFetched &&
+                    <div className={styles.weatherResult}>
+                        <h2>max Temperature {weather.days[0].tempmax}°C</h2>
+                        <h2>max Temperature {weather.days[0].tempmin}°C</h2>
+                        <h2>max Temperature {weather.days[0].sunrise}</h2>
+                        <h2>max Temperature {weather.days[0].sunset}</h2>
+                        <h2>max Temperature {weather.days[0].description} </h2>
+                        <h2>Weather Icon: {weather_icons[weather.days[0].icon]} </h2>
+                    </div>
+                }
             </div>
         </div >
     </>)
 }
+
 export default Details
