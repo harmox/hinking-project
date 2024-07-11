@@ -1,18 +1,28 @@
+.details {
+    display: flex;
+    justify-content: space-evenly;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 600px;
     height: 750px;
     box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 212, 255, 0.1) 60%);
     border-radius: 20px;
     margin-top: 5px;
-    background-color: linear-gradient(90deg, rgba(214, 249, 1, 0.1) 36%, rgba(0, 212, 255, 0.1) 100%);
     padding: 20px;
     box-sizing: border-box;
 }
 
+
+h1 {
+    align-self: center;
+}
 
 p {
     width: 100%;
@@ -22,10 +32,6 @@ p {
 
 }
 
-.details {
-    display: flex;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
 
 .containerDetails {
     display: flex;
@@ -37,7 +43,7 @@ p {
 .buttonPair {
     display: flex;
     justify-content: space-between;
-    width: 100%;
+    align-self: center;
     margin-bottom: 10px;
 }
 
@@ -51,16 +57,32 @@ p {
     border-radius: 20px;
 }
 
-.checkWeather {
-    width: 100%;
+.centerForm {
+    margin-top: 10px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    padding: 30px;
+    justify-content: center;
+    border-radius: 10px;
+
 
 }
 
-.centerForm {
-    display: flex;
+.checkWeather {
+    flex-direction: column;
     align-items: center;
+    display: flex;
+    margin-bottom: 10px;
+    width: 600px;
+    height: 750px;
+
+}
+
+.weatherIcon {
+    position: absolute;
+    display: flex;
+    top: 10%;
+    align-self: flex-end;
+    font-size: 300px;
+    z-index: -1;
+    opacity: 0.6;
 }

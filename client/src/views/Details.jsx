@@ -57,34 +57,40 @@ function Details() {
                     </h3>
                     <p className={styles.description}>{data.description}</p>
                     {owner ? (<div className={styles.buttonPair}>
-                        <button type="submit">Interested</button>
-                        <button type="submit">Visits</button>
+                        <button >Interested</button>
+                        <button >Visits</button>
                     </div>) : (<div className={styles.buttonPair}>
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
+                        <button >Edit</button>
+                        <button >Delete</button>
                     </div>)}
                 </div>
             </div>
             <div className={styles.checkWeather}>
-                <form className={styles.centerForm} onSubmit={searchPressed} >
-                    <h4 >Check weather:</h4>
-                    <input type="date"
-                        id="Test_DatetimeLocal" name="date" onChange={(e) => setDate(e.target.value)} />
-                    <button type="submit">check</button>
-                </form>
-                {isWeatherFetched &&
-                    <div className={styles.weatherResult}>
-                        <h2>max Temperature {weather.days[0].tempmax}°C</h2>
-                        <h2>max Temperature {weather.days[0].tempmin}°C</h2>
-                        <h2>max Temperature {weather.days[0].sunrise}</h2>
-                        <h2>max Temperature {weather.days[0].sunset}</h2>
-                        <h2>max Temperature {weather.days[0].description} </h2>
-                        <h2>Weather Icon: {weather_icons[weather.days[0].icon]} </h2>
+                {isWeatherFetched ? (
+                    <div className={styles.card}>
+                        <div className={styles.weatherIcon}>{weather_icons[weather.days[0].icon] || '❓'}
+                        </div>
+                        <h1>Weather for {date}</h1>
+                        <h2>Max Temperature: {weather.days[0].tempmax}°C</h2>
+                        <h2>Min Temperature: {weather.days[0].tempmin}°C</h2>
+                        <h2>Sunrise: {weather.days[0].sunrise}</h2>
+                        <h2>Sunset: {weather.days[0].sunset}</h2>
+                        <h2>Description: {weather.days[0].description||`No description`} </h2>
+                        <div className={styles.buttonPair}><button onClick={e => setIsWeatherFetched(false)}>Fix date</button></div>
                     </div>
+                ) : (
+                        <form className={styles.centerForm} onSubmit={searchPressed} >
+                            <h2 >Check weather:</h2>
+                            <input type="date"
+                                id="Test_DatetimeLocal" name="date" onChange={(e) => setDate(e.target.value)} />
+                            <button type="submit">Check</button>
+                        </form>
+                )
                 }
             </div>
         </div >
     </>)
 }
+// {weather_icons[weather.days[0].icon] || '❓'}
 
 export default Details
