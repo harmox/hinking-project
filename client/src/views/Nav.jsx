@@ -1,22 +1,22 @@
 
 
-function Navigation({ isUserLoggedIn }) {
+function Navigation({ isUserLoggedIn, Link }) {
     return (
         <>
             <nav>
-                <div className="visits">{isUserLoggedIn && <a href="/visits">My visits</a>}</div>
+                <div className="visits">{isUserLoggedIn && <Link to="/visits">My visits</Link>}</div>
                 <div className="links">
-                    <a href="/">Home</a>
-                    <a href="/catalog">Catalog</a>
+                    <Link to="/">Home</Link>
+                    <Link to="/catalog">Catalog</Link>
                     {isUserLoggedIn ? (
                         <div className="user">
-                            <a href="/create">Add journey</a>
-                            <a href="/logout">Logout</a>
+                            <Link to="/create">Add journey</Link>
+                            <Link to="/logout">Logout</Link>
                         </div>
                     ) : (
                         <div className="guest">
-                            <a href="/login">Login</a>
-                            <a href="/register">Register</a>
+                            <Link to="/login">Login</Link>
+                            <Link to="/register">Register</Link>
                         </div>
                     )}
                 </div>

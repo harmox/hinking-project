@@ -7,9 +7,9 @@ function LogOut({ setIsUserLoggedIn }) {
         try {
             const response = await logout()
             if (response.ok) {
-                localStorage.clear()
+                localStorage.clear(`user`)
                 setIsUserLoggedIn(false)
-                navigate(`/`)
+                navigate(`/login`)
             }
         } catch (err) {
             console.log(err.message)

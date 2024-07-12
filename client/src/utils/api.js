@@ -15,7 +15,6 @@ const opitons = {
     headers: { "Content-Type": "application/json" },
     credentials: 'include'
 }
-//TODO handler errors
 async function registerR(data) {
     opitons.body = JSON.stringify(data),
         opitons.method = `post`
@@ -38,7 +37,12 @@ async function login(data) {
 }
 async function logout() {
     opitons.method = `get`
-    return await fetch(URLS.base + URLS.logout, opitons)
+    try {
+
+        return await fetch(URLS.base + URLS.logout)
+    } catch (err) {
+        console.log(err.message)
+    }
 }
 async function homeGet() {
     try {

@@ -1,17 +1,17 @@
-const e = require(`express`)
+const express = require(`express`)
 const cookieParser = require(`cookie-parser`)
 const mongoose = require(`mongoose`);
 const { session } = require("./src/session.js");
-const { router } = require("./src/router.js");
 const { cors } = require("./src/cors.js");
-const app = e()
+const { router } = require("./src/router.js");
+const app = express()
 const PORT = process.env.PORT || 3000
 const secret = `superBigSecret`
 
 //TODO change on deploy
 mongoose.connect(`mongodb://localhost:27017/hiking`)
 app.use(cors())
-app.use(e.json());
+app.use(express.json());
 app.use(cookieParser(secret))
 app.use(session())
 

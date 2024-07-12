@@ -3,13 +3,13 @@ const jwt = require(`jsonwebtoken`)
 const secret = `superBigSecret`
 
 function createToken(user) {
-    //TODO check if email or username
     const payload = { id: user._id, email: user.email }
     const token = jwt.sign(payload, secret, { expiresIn: `2d` })
     return token
 }
 function verifyToken(token) {
     const payload = jwt.verify(token, secret)
+    console.log(payload)
     return payload
 }
 function session() {
@@ -18,6 +18,7 @@ function session() {
         if (token) {
             try {
                 req.user = verifyToken(token)
+                console.log()
             } catch (err) {
                 res.clearCookie(`token`)
             }
