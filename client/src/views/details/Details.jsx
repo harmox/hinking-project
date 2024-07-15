@@ -5,6 +5,8 @@ import weather_icons from "./icons.js"
 import { detailsGet } from "../../utils/api.js";
 import { ClipLoader } from 'react-spinners';
 import onDeleteClick from "./onDeleteClick.js";
+import searchPressed from "./weather.js";
+import interested from "./visits.js";
 
 const api = {
     key: "FZP48UWCAWRCQ59J8PPXRSUAD",
@@ -32,6 +34,8 @@ function Details({ setError }) {
                 }
                 setData(element)
                 setIsOwner(element.owner == localStorage.user)
+                if (element.visits.includes(localStorage.user)) { setVisited(true) }
+                console.log(element)
             } catch (err) {
                 setError(`Error with fetching data !`)
                 console.log(err.message)
@@ -40,22 +44,29 @@ function Details({ setError }) {
             }
         })();
     }, [id]);
-    async function searchPressed(e) {
-        e.preventDefault()
-        setLoadingWeather(true)
-        if (!date) { return }
-        try {
-            const res = await fetch(`${api.base}${data.longitude},${data.latitude}/${date}?iconSet=icons1&&unitGroup=metric&include=days&key=${api.key}&contentType=json`);
-            const result = await res.json();
-            setWeather(result);
-            setIsWeatherFetched(true);
-        } catch (err) {
-            setError(`Error with fetching data ${err.message}`)
-        } finally {
-            setLoadingWeather(false)
-        }
-        console.log(weather)
-    }
+    // async function searchPressed(e) {
+    //     e.preventDefault()
+    //     setLoadingWeather(true)
+    //     if (!date) { return }
+    //     try {
+    //         const res = await fetch(`${api.base}${data.longitude},${data.latitude}/${date}?iconSet=icons1&&unitGroup=metric&include=days&key=${api.key}&contentType=json`);
+    //         const result = await res.json();
+    //         setWeather(result);
+    //         setIsWeatherFetched(true);
+    //     } catch (err) {
+    //         setError(`Error with fetching data ${err.message}`)
+    //     } finally {
+    //         setLoadingWeather(false)
+    //     }
+    //     console.log(weather)
+    // }
+
+    // async function interested(e) {
+    //     if (data.owner == localStorage.user) { return }
+    //     const userId = localStorage.user
+    //     const response = await visits(id, { userId })
+    //     setVisited(true)
+    // }
 
     return (<>
         <div className={styles.details}>
@@ -79,7 +90,7 @@ function Details({ setError }) {
                                 <button onClick={e => onDeleteClick(e, id, data.owner, { navigate })}>Delete</button>
                             </div>) : (<div className={styles.buttonPair}>
 
-                                <button className={visited ? styles.disabledLink : ""}>Interested</button>
+                                <button className={visited ? styles.disabledLink : ""} onClick={e => interested(e, data.owner,id, { setVisited })}>Interested</button>
                                 <button >Visits</button>
                             </div>)}
                         </div>
@@ -106,7 +117,7 @@ function Details({ setError }) {
                                 </div>
                             </div>
                         )
-                            : (<form className={styles.centerForm} onSubmit={searchPressed}>
+                            : (<form className={styles.centerForm} onSubmit={e => searchPressed(e, data, date, { setWeather }, { setLoadingWeather }, { setIsWeatherFetched }, { setError })}>
                                 <h2>Check weather:</h2>
                                 <input type="date" id="Test_DatetimeLocal" name="date" onChange={(e) => setDate(e.target.value)} />
                                 <button type="submit">Check</button>

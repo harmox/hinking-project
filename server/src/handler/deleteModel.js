@@ -1,7 +1,6 @@
 const { model } = require("../../models/model.js");
 
 module.exports = async function deleteModel(req, res) {
-    console.log(req.params.id)
     //undefined
     try {
         const data = await model.findByIdAndDelete(req.params.id)

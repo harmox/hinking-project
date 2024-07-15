@@ -8,6 +8,7 @@ const URLS = {
     create: `/create`,
     catalog: `/catalog`,
     details: `/details/`,
+    visits: `/visits/`,
     edit: `/edit/`,
     delete: `/delete/`
 
@@ -58,6 +59,9 @@ async function catalogGet({ signal }) {
 async function add(data) {
     return await fetching(`post`, URLS.base + URLS.create, data)
 }
+async function visits(id, data) {
+    return await fetching(`put`, URLS.base + URLS.visits + id, data)
+}
 async function edit(id, data) {
     return await fetching(`put`, URLS.base + URLS.edit + id, data)
 }
@@ -69,4 +73,4 @@ async function deleteM(id) {
     return await fetching(`delete`, URLS.base + URLS.delete + id)
 }
 
-export { registerR, logout, login, add, homeGet, catalogGet, detailsGet, edit, deleteM, };
+export { registerR, logout, login, add, homeGet, catalogGet, detailsGet, edit, deleteM, visits };
