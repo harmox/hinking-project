@@ -7,74 +7,66 @@ const URLS = {
     login: `/login`,
     create: `/create`,
     catalog: `/catalog`,
-    details: `/details/`
+    details: `/details/`,
+    edit: `/edit/`,
+    delete: `/delete/`
 
 }
 
-const opitons = {
-    headers: { "Content-Type": "application/json" },
-    credentials: 'include'
+async function fetching(method, url, data, signal) {
+    const opitons = {
+        method,
+        headers: { "Content-Type": "application/json" },
+        credentials: 'include'
+    }
+    if (signal) {
+        opitons.signal = signal
+    }
+    if (data !== undefined) {
+        opitons.body = JSON.stringify(data)
+    }
+    try {
+        const response = await fetch(url, opitons)
+
+        if (!response.ok) {
+            if (response.status == `400`) {
+                return response.json()
+            }
+            throw new Error(`Try again`)
+        }
+        return await response.json()
+    } catch (err) {
+        console.log(err.message)
+    }
 }
 async function registerR(data) {
-    opitons.body = JSON.stringify(data),
-        opitons.method = `post`
-    try {
-        const info = await fetch(URLS.base + URLS.register, opitons)
-        return info
-    } catch (err) {
-        console.log(err.message)
-    }
+    return await fetching(`post`, URLS.base + URLS.register, data)
 }
 async function login(data) {
-    opitons.body = JSON.stringify(data),
-        opitons.method = `post`
-    try {
-        const info = await fetch(URLS.base + URLS.login, opitons)
-        return info
-    } catch (err) {
-        console.log(err.message)
-    }
+    return await fetching(`post`, URLS.base + URLS.login, data)
 }
 async function logout() {
-    opitons.method = `get`
-    try {
-
-        return await fetch(URLS.base + URLS.logout)
-    } catch (err) {
-        console.log(err.message)
-    }
+    return await fetching(`get`, URLS.base + URLS.logout)
 }
-async function homeGet() {
-    try {
-        return await fetch(URLS.base + URLS.home)
-    } catch (err) {
-        console.log(err)
-    }
+async function homeGet({ signal }) {
+    return await fetching(`get`, URLS.base + URLS.home, undefined, signal)
 }
-async function catalogGet() {
-    try {
-        return await fetch(URLS.base + URLS.catalog)
-    } catch (err) {
-        console.log(err)
-    }
+async function catalogGet({ signal }) {
+    return await fetching(`get`, URLS.base + URLS.catalog, undefined, signal)
 }
 
 async function add(data) {
-    opitons.body = JSON.stringify(data),
-        opitons.method = `post`
-    try {
-        const info = await fetch(URLS.base + URLS.create, opitons)
-        return info
-    } catch (err) {
-        console.log(err.message)
-    }
+    return await fetching(`post`, URLS.base + URLS.create, data)
 }
-async function details(id) {
-    try {
-        return await fetch(URLS.base + URLS.details + id)
-    } catch (err) {
-        console.log(err)
-    }
+async function edit(id, data) {
+    return await fetching(`put`, URLS.base + URLS.edit + id, data)
+}
+async function detailsGet(id) {
+    return await fetching(`get`, URLS.base + URLS.details + id)
 }
 
-export { registerR, logout, login, add, homeGet, catalogGet, details };
+async function deleteM(id) {
+    return await fetching(`delete`, URLS.base + URLS.delete + id)
+}
+
+export { registerR, logout, login, add, homeGet, catalogGet, detailsGet, edit, deleteM, };

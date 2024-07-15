@@ -1,20 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "../errors.module.css"
-import { add } from "../utils/api.js"
+import { add, detailsGet, edit } from "../utils/api.js"
 import { er, isValidImageUrl } from "../errors/validations.js"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 function Add({ setError }) {
+    let { id } = useParams();
     const navigate = useNavigate()
-    const [err, setErrors] = useState({
-        name: null,
-        distance: null,
-        time: null,
-        longitude: null,
-        latitude: null,
-        image: null,
-        description: null
-    })
     const [formData, setFormData] = useState({
         name: "",
         distance: "",
@@ -24,6 +16,61 @@ function Add({ setError }) {
         image: "",
         description: ""
     });
+    const nameOfButton = window.location.href.endsWith("create") ? "Create" : "Edit";
+    const [err, setErrors] = useState({
+        name: null,
+        distance: null,
+        time: null,
+        longitude: null,
+        latitude: null,
+        image: null,
+        description: null
+    })
+    useEffect(() => {
+        if (id != undefined && id.length >= 20) {
+            (async () => {
+                try {
+                    const data = await detailsGet(id)
+                    setFormData(data)
+                    if (data.owner != localStorage.user) {
+                        navigate(`/`)
+                    }
+                    setErrors({
+                        name: er(data.name, 3),
+                        distance: er(data.distance) || data.distance <= 0,
+                        time: er(data.time) || data.time <= 0,
+                        longitude: er(data.longitude),
+                        latitude: er(data.latitude),
+                        image: !isValidImageUrl(data.image),
+                        description: er(data.description, 20)
+                    })
+                } catch (err) {
+                    setError(`Error with fetching data ${err.message}`)
+                }
+
+            })();
+        } else {
+            setFormData({
+                name: "",
+                distance: "",
+                time: "",
+                longitude: "",
+                latitude: "",
+                image: "",
+                description: ""
+            });
+            setErrors({
+                name: null,
+                distance: null,
+                time: null,
+                longitude: null,
+                latitude: null,
+                image: null,
+                description: null
+            })
+        }
+    }, [id]);
+
     const onInputChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -49,22 +96,31 @@ function Add({ setError }) {
             setErrors({ ...err, description: er(value, 20) });
         }
     };
+    console.log(err)
     async function onSubmit(e) {
         e.preventDefault()
         const { name, distance, time, longitude, latitude, image, description } = formData
         const errorCheck = Object.values(err)
-        if (errorCheck.length == 0 || errorCheck.includes(null)) {
-            if (errorCheck.includes(true)) {
-                setError(`Fix your inputs!`)
-            }
-            setError(`All fields are required!`)
+        if (errorCheck.length == 0 || errorCheck.includes(null) || errorCheck.includes(true)) {
+            setError(`Fix your inputs!`)
         } else {
-            const result = await add({ name, distance, time, longitude, latitude, image, description, owner: localStorage.user })
-            const res = await result.json()
-            if (!res.data) {
-                return setError(result.message)
+            let result;
+            try {
+                if (id != undefined && id.length >= 20) {
+                    if (localStorage.user != formData.owner) { return }
+                    result = await edit(id, { name, distance, time, longitude, latitude, image, description });
+                } else {
+                    result = await add({ name, distance, time, longitude, latitude, image, description, owner: localStorage.user });
+                }
+                if (result.message) { setError(result.message) }
+                if (!result.data) {
+                    return setError(result.message);
+                }
+                navigate(`/details/${result.data._id}`);
+            } catch (error) {
+                setError(`Error with submitting data! `)
+                console.log(error.message);
             }
-            navigate(`/details/${res.data._id}`)
         }
 
     }
@@ -75,21 +131,21 @@ function Add({ setError }) {
 
                 <form className="addSigth" onSubmit={onSubmit} onChange={onInputChange}>
 
-                    <input type="text" name="name" id="" placeholder="name" className={err.name ? styles.error : ''} />
+                    <input type="text" name="name" id="" placeholder="name" defaultValue={formData.name} className={err.name ? styles.error : ''} />
 
-                    <input type="number" name="distance" id="" placeholder="distance one way in km" step="0.1" className={err.distance ? styles.error : ''} />
+                    <input type="number" name="distance" id="" placeholder="distance one way in km" step="0.1" defaultValue={formData.distance} className={err.distance ? styles.error : ''} />
 
-                    <input type="number" name="time" id="" placeholder="ascend time in hours" step="0.1" className={err.time ? styles.error : ''} />
+                    <input type="number" name="time" id="" placeholder="ascend time in hours" step="0.1" defaultValue={formData.time} className={err.time ? styles.error : ''} />
 
-                    <input type="number" name="longitude" id="" placeholder="longitude" step="0.00001" className={err.longitude ? styles.error : ''} />
+                    <input type="number" name="longitude" id="" placeholder="longitude" step="0.00001" defaultValue={formData.longitude} className={err.longitude ? styles.error : ''} />
 
-                    <input type="number" name="latitude" id="" placeholder="latitude" step="0.00001" className={err.latitude ? styles.error : ''} />
+                    <input type="number" name="latitude" id="" placeholder="latitude" step="0.00001" defaultValue={formData.latitude} className={err.latitude ? styles.error : ''} />
 
-                    <input type="text" name="image" id="" placeholder="image" className={err.image ? styles.error : ''} />
+                    <input type="text" name="image" id="" placeholder="image" defaultValue={formData.image} className={err.image ? styles.error : ''} />
 
-                    <input type="text" name="description" id="" placeholder="description" className={err.description ? styles.error : ''} />
+                    <input type="text" name="description" id="" placeholder="description" defaultValue={formData.description} className={err.description ? styles.error : ''} />
 
-                    <button type="submit">Add sigth</button>
+                    <button type="submit">{nameOfButton}</button>
 
                 </form>
             </div>

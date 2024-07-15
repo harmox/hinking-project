@@ -86,3 +86,10 @@ p {
     z-index: -1;
     opacity: 0.6;
 }
+
+.disabledLink {
+    pointer-events: none;
+    background-color:  rgb(83, 83, 83);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}

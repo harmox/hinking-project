@@ -13,7 +13,7 @@ module.exports = async function login(req, res) {
         if (!match) { return res.status(400).json({ message: `Wrong password` }) }
         const token = createToken(exist);
         res.cookie(`token`, token, { httpOnly: true, sameSite: 'Strict', secure: true })
-        res.status(201).json({ message: `Logged in succesfully!`, userId: exist._id })
+        res.status(201).json({ userId: exist._id })
     } catch (err) {
         console.log(err.message)
         res.status(500).json({ message: `Something went wrong on login please try again!` })

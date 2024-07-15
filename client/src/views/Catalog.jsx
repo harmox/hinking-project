@@ -9,22 +9,24 @@ function Catalog({ setError }) {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        (async function Gal() {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        (async () => {
             try {
-
-                const toShow = await catalogGet()
-                const data = await toShow.json()
+                const data = await catalogGet({ signal })
                 setData(data)
                 constantSet(data)
             } catch (err) {
-                setError(`Error with fetching data ${err.message}`)
+                setError(`Error with fetching data.`)
             } finally {
                 setLoading(false);
             }
         })();
+        return () => {
+            controller.abort()
+        }
     }, []);
     function buttonClick(e) {
-        console.log(constant)
         e.preventDefault()
         if (!search) {
             //TODO Error show

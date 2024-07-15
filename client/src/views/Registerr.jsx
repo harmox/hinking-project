@@ -28,7 +28,7 @@ function Register({ setIsUserLoggedIn, setError }) {
             setErrors({ ...errors, password: !validatePassword(value) });
         }
         if (name === 'repass') {
-            setErrors({ ...errors, repass: value !== formData.password });
+            setErrors({ ...errors, repass: !validatePassword(value) });
         }
     };
     async function registerHandler(e) {
@@ -40,19 +40,16 @@ function Register({ setIsUserLoggedIn, setError }) {
                 return
             }
             if (password !== repass) {
-                setError(`Passwords doesnt match!`)
+                setError(`Password doesnt match!`)
                 return
             }
 
-            const response = await registerR({ email, password })
-            const { message, userId } = await response.json()
-            if (response.ok) {
-                localStorage.setItem(`user`, userId)
-                setIsUserLoggedIn(true)
-                navigate('/');
-            } else {
-                setError(message)
-            }
+            const data = await registerR({ email, password })
+            console.log(data)
+            if (data.message) { throw new Error(data.message) }
+            localStorage.setItem(`user`, data.userId)
+            setIsUserLoggedIn(true);
+            navigate('/');
         } catch (err) {
             setError(err.message)
         }
@@ -65,9 +62,9 @@ function Register({ setIsUserLoggedIn, setError }) {
 
                 <form action="" onSubmit={registerHandler} onChange={onInputChange}>
 
-                    <input type="text" name="email" id="" placeholder="email" className={errors.email && styles.error} />
-                    <input type="password" name="password" id="" placeholder="password" className={errors.password && styles.error} />
-                    <input type="password" name="repass" id="" placeholder="repeat password" className={errors.repass && styles.error} />
+                    <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error : ""} />
+                    <input type="password" name="password" id="" placeholder="password" className={errors.password ? styles.error : ""} />
+                    <input type="password" name="repass" id="" placeholder="repeat password" className={errors.repass ? styles.error : ""} />
 
                     <button type="submit" onSubmit={registerHandler}>Register your accaunt</button>
 

@@ -1,39 +1,45 @@
 import { useState, useEffect } from "react";
 import styles from "./details.module.css"
-import { useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import weather_icons from "./icons.js"
-import { details } from "../../utils/api.js";
+import { detailsGet } from "../../utils/api.js";
 import { ClipLoader } from 'react-spinners';
+import onDeleteClick from "./onDeleteClick.js";
 
 const api = {
     key: "FZP48UWCAWRCQ59J8PPXRSUAD",
     base: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/",
 };
 function Details({ setError }) {
-    let { id } = useParams();
+    const navigate = useNavigate()
+    const { id } = useParams();
     const [data, setData] = useState([])
     const [owner, setIsOwner] = useState(false);
+    const [visited, setVisited] = useState(false)
     const [loading, setLoading] = useState(true);
+
     const [date, setDate] = useState("");
     const [weather, setWeather] = useState({});
     const [isWeatherFetched, setIsWeatherFetched] = useState(false);
     const [loadingWeather, setLoadingWeather] = useState(false);
+    //TODO check if correct id
     useEffect(() => {
-        (async function Gal() {
+        (async () => {
             try {
-                const toShow = await details(id)
-                const element = await toShow.json()
+                const element = await detailsGet(id)
+                if (element == null) {
+                    return setError(`Wrong id ??`)
+                }
                 setData(element)
                 setIsOwner(element.owner == localStorage.user)
             } catch (err) {
-                setError(`Error with fetching data ${err.message}`)
+                setError(`Error with fetching data !`)
+                console.log(err.message)
             } finally {
                 setLoading(false)
             }
         })();
-    }, []);
-    console.log(weather)
-
+    }, [id]);
     async function searchPressed(e) {
         e.preventDefault()
         setLoadingWeather(true)
@@ -47,10 +53,10 @@ function Details({ setError }) {
             setError(`Error with fetching data ${err.message}`)
         } finally {
             setLoadingWeather(false)
-
         }
+        console.log(weather)
     }
-    //TODO check if owner 
+
     return (<>
         <div className={styles.details}>
 
@@ -69,11 +75,12 @@ function Details({ setError }) {
                             </h3>
                             <p className={styles.description}>{data.description}</p>
                             {owner ? (<div className={styles.buttonPair}>
-                                <button >Interested</button>
-                                <button >Visits</button>
+                                <Link to={`/edit/${data._id}`}><button>Edit</button> </Link>
+                                <button onClick={e => onDeleteClick(e, id, data.owner, { navigate })}>Delete</button>
                             </div>) : (<div className={styles.buttonPair}>
-                                <button >Edit</button>
-                                <button >Delete</button>
+
+                                <button className={visited ? styles.disabledLink : ""}>Interested</button>
+                                <button >Visits</button>
                             </div>)}
                         </div>
                     )}

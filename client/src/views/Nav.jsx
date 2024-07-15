@@ -1,26 +1,36 @@
+import { NavLink, useLocation } from "react-router-dom"
+import styles from "../errors.module.css"
 
-
-function Navigation({ isUserLoggedIn, Link }) {
+function Navigation({ isUserLoggedIn }) {
+    const location = useLocation();
+    const isEditPage = location.pathname.includes("/edit");
     return (
         <>
             <nav>
-                <div className="visits">{isUserLoggedIn && <Link to="/visits">My visits</Link>}</div>
+                <div className="visits">{isUserLoggedIn && <NavLink to="/visits">My visits</NavLink>}</div>
                 <div className="links">
-                    <Link to="/">Home</Link>
-                    <Link to="/catalog">Catalog</Link>
+                    <NavLink to="/" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Home</NavLink>
+                    <NavLink to="/catalog" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Catalog</NavLink>
                     {isUserLoggedIn ? (
                         <div className="user">
-                            <Link to="/create">Add journey</Link>
-                            <Link to="/logout">Logout</Link>
+                            <NavLink
+                                to="/create"
+                                // className={isEditPage ? styles.disabledLink  : ""}
+                                style={({ isActive }) => (isActive ? { textDecoration: "underline" } : {})}
+                                // onClick={(e) => isEditPage && e.preventDefault()}
+                                >
+                                Add journey
+                            </NavLink>
+                            <NavLink to="/logout" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Logout</NavLink>
                         </div>
                     ) : (
                         <div className="guest">
-                            <Link to="/login">Login</Link>
-                            <Link to="/register">Register</Link>
+                            <NavLink to="/login" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Login</NavLink>
+                            <NavLink to="/register" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Register</NavLink>
                         </div>
                     )}
                 </div>
-            </nav>
+            </nav >
         </>
     )
 }

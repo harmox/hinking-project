@@ -9,7 +9,6 @@ function createToken(user) {
 }
 function verifyToken(token) {
     const payload = jwt.verify(token, secret)
-    console.log(payload)
     return payload
 }
 function session() {
@@ -18,7 +17,6 @@ function session() {
         if (token) {
             try {
                 req.user = verifyToken(token)
-                console.log()
             } catch (err) {
                 res.clearCookie(`token`)
             }

@@ -1,24 +1,28 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { homeGet } from '../../utils/api.js';
 import Card from './Card.jsx';
 import styles from "../../paragraphs.module.css"
-import { ClipLoader } from 'react-spinners'; 
+import { ClipLoader } from 'react-spinners';
 
-function Home({setError}) {
+function Home({ setError }) {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        (async function Gal() {
+        const controller = new AbortController();
+        const signal = controller.signal;
+        (async () => {
             try {
-                const toShow = await homeGet();
-                const data = await toShow.json();
+                const data = await homeGet({ signal });
                 setData(data);
             } catch (error) {
-               setError(`Error with fetching data ${err.message}`)
+                setError(`Error with fetching data.`)
             } finally {
                 setLoading(false);
             }
         })();
+        return () => {
+            controller.abort()
+        }
     }, []);
     return (
         <div className='welcome'>

@@ -35,16 +35,12 @@ function LogIn({ setIsUserLoggedIn, setError }) {
             return
         }
         try {
-            const response = await login({ email, password })
-            const { message, userId } = await response.json()
-            if (response.ok) {
-                localStorage.setItem(`user`, userId)
-                setIsUserLoggedIn(true);
-                navigate('/');
-            } else {
-                console.log(message)
-                setError(message)
-            }
+            const data = await login({ email, password })
+            if (data.message) { throw new Error(data.message) }
+
+            localStorage.setItem(`user`, data.userId)
+            setIsUserLoggedIn(true);
+            navigate('/');
         } catch (err) {
             setError(err.message)
         }
@@ -55,9 +51,9 @@ function LogIn({ setIsUserLoggedIn, setError }) {
 
                 <form action="" onSubmit={logInHandler} onChange={onInputChange}>
 
-                    <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error:""} />
+                    <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error : ""} />
 
-                    <input type="password" name="password" id="" placeholder="password" className={errors.password ? styles.error:''} />
+                    <input type="password" name="password" id="" placeholder="password" className={errors.password ? styles.error : ''} />
 
                     <button type="submit">login to your account</button>
 

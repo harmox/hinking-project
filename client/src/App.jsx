@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from "react"
 
 import Navigation from './views/Nav.jsx'
@@ -19,22 +19,25 @@ function App() {
   useEffect(() => {
     setIsUserLoggedIn(!!localStorage.getItem('user'));
   }, []);
-//TODO 404
+  //TODO 404
   return (
     <>
-      <Navigation isUserLoggedIn={isUserLoggedIn} Link={Link} />
+      <Navigation isUserLoggedIn={isUserLoggedIn} />
       {error && <Error error={error} setError={setError} />}
       <Routes>
-        <Route path="/" element={<Home setError={setError}/>} />
-        <Route path="/details/:id" element={<Details  setError={setError}/>} />
-        <Route path="/catalog" element={<Catalog setError={setError} />} />
+        <Route path="/" element={<Home setError={setError} />} />
+        <Route path="/details/:id" element={<Details setError={setError} />} />
+        <Route path="/edit/:id" element={<Add setError={setError} />} />
+
+
         <Route path="/create" element={<Add setError={setError} />} />
+        <Route path="/catalog" element={<Catalog setError={setError} />} />
 
         <Route path="/register" element={<Register setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
         <Route path="/logout" element={<LogOut setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
         <Route path="/login" element={<LogIn setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
         <Route path="*" element={< NotFound />} />
-      </Routes>
+      </Routes >
     </>
   )
 }

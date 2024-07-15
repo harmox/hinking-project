@@ -144,7 +144,6 @@ nav a:hover {
 .sigths {
   height: 70vh;
   width: 100%;
-  margin: 0px;
 }
 
 
@@ -184,8 +183,8 @@ nav a:hover {
 .error p {
   font-family: Arial, sans-serif;
   font-size: 16px;
-  text-align: left;  
-  margin: 10px 0; 
+  text-align: left;
+  margin: 10px 0;
   padding: 0;
 }
 
@@ -195,6 +194,7 @@ nav a:hover {
 
 
 .sigthsScroll .card {
+  margin: 0px;
   width: 500px;
   height: 400px;
 }
@@ -213,10 +213,11 @@ nav a:hover {
 
 @keyframes shrink {
   from {
-   opacity: 1;
+    opacity: 1;
   }
+
   to {
-    opacity:0;
+    opacity: 0;
   }
 }
 
