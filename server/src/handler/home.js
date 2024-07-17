@@ -1,5 +1,5 @@
 const { model } = require("../../models/model.js");
-
+//TODO req.user info
 module.exports = async function home(req, res) {
     try {
         const data = await model.find().sort({ visits: -1 }).limit(3)

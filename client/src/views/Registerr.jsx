@@ -8,11 +8,13 @@ function Register({ setIsUserLoggedIn, setError }) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
+        username: "",
         password: "",
         repass: ""
     });
     const [errors, setErrors] = useState({
         email: false,
+        username: false,
         password: false,
         repass: false
     });
@@ -24,6 +26,9 @@ function Register({ setIsUserLoggedIn, setError }) {
         if (name === 'email') {
             setErrors({ ...errors, email: !validateEmail(value) });
         }
+        if (name === 'username') {
+            setErrors({ ...errors, username: !validatePassword(value) });
+        }
         if (name === 'password') {
             setErrors({ ...errors, password: !validatePassword(value) });
         }
@@ -33,9 +38,9 @@ function Register({ setIsUserLoggedIn, setError }) {
     };
     async function registerHandler(e) {
         e.preventDefault()
-        const { email, password, repass } = formData
+        const { email, username, password, repass } = formData
         try {
-            if (!email || !password || !repass) {
+            if (!email || !username || !password || !repass) {
                 setError(`Please enter Email, Password and repeat Password!`)
                 return
             }
@@ -44,7 +49,7 @@ function Register({ setIsUserLoggedIn, setError }) {
                 return
             }
 
-            const data = await registerR({ email, password })
+            const data = await registerR({ email, username, password })
             console.log(data)
             if (data.message) { throw new Error(data.message) }
             localStorage.setItem(`user`, data.userId)
@@ -59,10 +64,10 @@ function Register({ setIsUserLoggedIn, setError }) {
     return (
         <>
             <div className="formContainer">
-
-                <form action="" onSubmit={registerHandler} onChange={onInputChange}>
+                <form className="registration" action="" onSubmit={registerHandler} onChange={onInputChange}>
 
                     <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error : ""} />
+                    <input type="text" name="username" id="" placeholder="username" className={errors.username ? styles.error : ""} />
                     <input type="password" name="password" id="" placeholder="password" className={errors.password ? styles.error : ""} />
                     <input type="password" name="repass" id="" placeholder="repeat password" className={errors.repass ? styles.error : ""} />
 

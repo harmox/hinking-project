@@ -9,6 +9,7 @@ const visits = require("./handler/visits.js")
 
 const login = require("./handler/login.js")
 const register = require("./handler/register.js")
+const profile = require("./handler/profile.js")
 
 
 
@@ -17,6 +18,7 @@ const router = Router()
 //TODO HANDLER ERRORS
 router.get(`/`, home)
 router.get(`/catalog`, catalog)
+router.get(`/profile`, profile)
 
 router.get(`/details/:id`, detailsGet)
 router.delete(`/delete/:id`, deleteModel)

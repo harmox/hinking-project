@@ -7,7 +7,7 @@ function Navigation({ isUserLoggedIn }) {
     return (
         <>
             <nav>
-                <div className="visits">{isUserLoggedIn && <NavLink to="/visits">My visits</NavLink>}</div>
+                <div className="visits">{ isUserLoggedIn && <NavLink style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}} to="/profile">Profile</NavLink>}</div>
                 <div className="links">
                     <NavLink to="/" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Home</NavLink>
                     <NavLink to="/catalog" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Catalog</NavLink>
@@ -17,8 +17,8 @@ function Navigation({ isUserLoggedIn }) {
                                 to="/create"
                                 // className={isEditPage ? styles.disabledLink  : ""}
                                 style={({ isActive }) => (isActive ? { textDecoration: "underline" } : {})}
-                                // onClick={(e) => isEditPage && e.preventDefault()}
-                                >
+                            // onClick={(e) => isEditPage && e.preventDefault()}
+                            >
                                 Add journey
                             </NavLink>
                             <NavLink to="/logout" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Logout</NavLink>

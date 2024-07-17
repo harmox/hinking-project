@@ -9,6 +9,7 @@ body {
 
 
 
+
 .bg {
   top: 0;
   left: 0;
@@ -240,6 +241,11 @@ form {
   padding: 20px 22px;
   border: 1px solid;
   border-color: rgba(255, 255, 255, .4);
+  box-shadow: 2px 2px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.registration {
+  height: 400px;
 }
 
 .addSigth {
@@ -260,11 +266,11 @@ form button {
   letter-spacing: .075em;
   color: #225556;
   margin-bottom: 30px;
+  word-wrap: break-word;
 }
 
-
 form input:focus {
-  background-color: rgba(119, 129, 239, 0.4);
+  background-color: rgba(130, 130, 130, .3);
 }
 
 form input.email {

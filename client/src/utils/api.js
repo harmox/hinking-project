@@ -6,6 +6,7 @@ const URLS = {
     logout: `/logout`,
     login: `/login`,
     create: `/create`,
+    profile: `/profile`,
     catalog: `/catalog`,
     details: `/details/`,
     visits: `/visits/`,
@@ -28,7 +29,7 @@ async function fetching(method, url, data, signal) {
     }
     try {
         const response = await fetch(url, opitons)
-
+        console.log(response)
         if (!response.ok) {
             if (response.status == `400`) {
                 return response.json()
@@ -68,9 +69,12 @@ async function edit(id, data) {
 async function detailsGet(id) {
     return await fetching(`get`, URLS.base + URLS.details + id)
 }
+async function myVisits({ signal }) {
+    return await fetching(`get`, URLS.base + URLS.profile, undefined, signal)
+}
 
 async function deleteM(id) {
     return await fetching(`delete`, URLS.base + URLS.delete + id)
 }
 
-export { registerR, logout, login, add, homeGet, catalogGet, detailsGet, edit, deleteM, visits };
+export { registerR, logout, login, add, homeGet, catalogGet, detailsGet, edit, deleteM, visits, myVisits };

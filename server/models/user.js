@@ -8,15 +8,15 @@ const userSchema = new mongoose.Schema(
             match: /.+\@.+\..+/,
             required: true,
         },
+        username: {
+            type: String,
+            unique: true,
+            required: true,
+        },
         password: {
             type: String,
             required: true,
         },
-        interested: [{
-            type: mongoose.Types.ObjectId,
-            ref: `hikingModel`,
-            default: []
-        }],
         visits: [{
             type: mongoose.Types.ObjectId,
             ref: `hikingModel`,

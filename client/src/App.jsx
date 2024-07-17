@@ -11,6 +11,7 @@ import LogOut from './views/Logouts.jsx';
 import Home from './views/home/Home.jsx';
 import Error from './errors/Error.jsx';
 import NotFound from './NotFound.jsx';
+import MyVisits from './views/MyVisits.jsx';
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ function App() {
 
         <Route path="/create" element={<Add setError={setError} />} />
         <Route path="/catalog" element={<Catalog setError={setError} />} />
+        <Route path="/profile" element={<MyVisits setError={setError} />} />
 
         <Route path="/register" element={<Register setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
         <Route path="/logout" element={<LogOut setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
