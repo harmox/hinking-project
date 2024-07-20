@@ -1,11 +1,15 @@
 import { login } from "../utils/api.js"
 import { useNavigate } from "react-router-dom"
 import styles from "../errors.module.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { validateEmail, validatePassword } from "../errors/validations.js";
 
 function LogIn({ setIsUserLoggedIn, setError }) {
     const navigate = useNavigate()
+    useEffect(() => {
+        if (localStorage.user) { navigate(`/`) }
+
+    }, [])
     const [formData, setFormData] = useState({
         email: "",
         password: "",

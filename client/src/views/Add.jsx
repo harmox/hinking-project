@@ -5,6 +5,7 @@ import { er, isValidImageUrl } from "../errors/validations.js"
 import { useNavigate, useParams } from "react-router-dom"
 
 function Add({ setError }) {
+    //        `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${apiKey}`
     let { id } = useParams();
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -112,13 +113,13 @@ function Add({ setError }) {
                 } else {
                     result = await add({ name, distance, time, longitude, latitude, image, description, owner: localStorage.user });
                 }
-                if (result.message) { setError(result.message) }
+                if (result.message) { ; setError(result.message) }
                 if (!result.data) {
                     return setError(result.message);
                 }
                 navigate(`/details/${result.data._id}`);
             } catch (error) {
-                setError(`Error with submitting data! `)
+                setError(`Error with submitting data!`)
                 console.log(error.message);
             }
         }

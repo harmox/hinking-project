@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registerR } from "../utils/api.js"
 import { useNavigate } from 'react-router-dom';
 import styles from "../errors.module.css"
@@ -6,6 +6,10 @@ import { validateEmail, validatePassword } from "../errors/validations.js";
 
 function Register({ setIsUserLoggedIn, setError }) {
     const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.user) { navigate(`/`) }
+
+    }, [])
     const [formData, setFormData] = useState({
         email: "",
         username: "",

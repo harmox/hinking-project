@@ -34,8 +34,7 @@ function Details({ setError }) {
                 }
                 setData(element)
                 setIsOwner(element.owner == localStorage.user)
-                if (element.visits.includes(localStorage.user)) { setVisited(true) }
-                console.log(element)
+                if (element.visits.some(i => i._id == localStorage.user)) { setVisited(true) }
             } catch (err) {
                 setError(`Error with fetching data !`)
                 console.log(err.message)
@@ -44,29 +43,10 @@ function Details({ setError }) {
             }
         })();
     }, [id]);
-    // async function searchPressed(e) {
-    //     e.preventDefault()
-    //     setLoadingWeather(true)
-    //     if (!date) { return }
-    //     try {
-    //         const res = await fetch(`${api.base}${data.longitude},${data.latitude}/${date}?iconSet=icons1&&unitGroup=metric&include=days&key=${api.key}&contentType=json`);
-    //         const result = await res.json();
-    //         setWeather(result);
-    //         setIsWeatherFetched(true);
-    //     } catch (err) {
-    //         setError(`Error with fetching data ${err.message}`)
-    //     } finally {
-    //         setLoadingWeather(false)
-    //     }
-    //     console.log(weather)
-    // }
+    function visitsCheck(e) {
 
-    // async function interested(e) {
-    //     if (data.owner == localStorage.user) { return }
-    //     const userId = localStorage.user
-    //     const response = await visits(id, { userId })
-    //     setVisited(true)
-    // }
+        console.log(data.visits)
+    }
 
     return (<>
         <div className={styles.details}>
@@ -90,8 +70,8 @@ function Details({ setError }) {
                                 <button onClick={e => onDeleteClick(e, id, data.owner, { navigate })}>Delete</button>
                             </div>) : (<div className={styles.buttonPair}>
 
-                                <button className={visited ? styles.disabledLink : ""} onClick={e => interested(e, data.owner,id, { setVisited })}>Interested</button>
-                                <button >Visits</button>
+                                <button className={visited ? styles.disabledLink : ""} onClick={e => interested(e, data.owner, id, { setVisited })}>Interested</button>
+                                <button onClick={visitsCheck}>Visits</button>
                             </div>)}
                         </div>
                     )}

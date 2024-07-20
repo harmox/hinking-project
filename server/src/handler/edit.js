@@ -3,6 +3,7 @@ const { model } = require("../../models/model.js")
 module.exports = async function edit(req, res) {
     const name = req.body.name
     try {
+        if (req.user.id == undefined) { return res.status(400).json({ message: 'Please login!' }); }
         const exist = await model.findOne({ name })
         if (exist) {
             return res.status(400).json({ message: 'Name is already in the list!' });
