@@ -12,6 +12,11 @@ import Home from './views/home/Home.jsx';
 import Error from './errors/Error.jsx';
 import NotFound from './NotFound.jsx';
 import MyVisits from './views/MyVisits.jsx';
+import ErrorContext from './context/errorContext.js';
+import isUserLogged from './context/isUSerLogged.js'
+
+
+
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -23,23 +28,26 @@ function App() {
   //TODO 404
   return (
     <>
-      <Navigation isUserLoggedIn={isUserLoggedIn} />
-      {error && <Error error={error} setError={setError} />}
-      <Routes>
-        <Route path="/" element={<Home setError={setError} />} />
-        <Route path="/details/:id" element={<Details setError={setError} />} />
-        <Route path="/edit/:id" element={<Add setError={setError} />} />
+      <ErrorContext.Provider value={{ setError, }}>
+        <isUserLogged.Provider value={{ setIsUserLoggedIn }}>
+          <Navigation isUserLoggedIn={isUserLoggedIn} />
+          {error && <Error error={error} />}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/edit/:id" element={<Add />} />
 
+            <Route path="/create" element={<Add />} />
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/profile" element={<MyVisits />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="/login" element={<LogIn />} />
 
-        <Route path="/create" element={<Add setError={setError} />} />
-        <Route path="/catalog" element={<Catalog setError={setError} />} />
-        <Route path="/profile" element={<MyVisits setError={setError} />} />
-
-        <Route path="/register" element={<Register setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
-        <Route path="/logout" element={<LogOut setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
-        <Route path="/login" element={<LogIn setIsUserLoggedIn={setIsUserLoggedIn} setError={setError} />} />
-        <Route path="*" element={< NotFound />} />
-      </Routes >
+            <Route path="*" element={< NotFound isUserLoggedIn={isUserLoggedIn} />} />
+          </Routes >
+        </isUserLogged.Provider >
+      </ErrorContext.Provider >
     </>
   )
 }

@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState ,useContext} from "react"
 import styles from "../errors.module.css"
-import { add, detailsGet, edit } from "../utils/api.js"
 import { er, isValidImageUrl } from "../errors/validations.js"
 import { useNavigate, useParams } from "react-router-dom"
+import { add, detailsGet, edit } from "../utils/api.js"
+import ErrorContext from "../context/errorContext.js";
 
-function Add({ setError }) {
-    //        `https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${apiKey}`
+function Add() {
+    const { setError } = useContext(ErrorContext)
     let { id } = useParams();
     const navigate = useNavigate()
     const [formData, setFormData] = useState({

@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react"
-import { myVisits } from "../utils/api.js";
+import { useEffect, useState ,useContext} from "react"
 import { ClipLoader } from "react-spinners";
-import Card from "./home/Card.jsx";
 import { useNavigate } from "react-router-dom";
+import { myVisits } from "../utils/api.js";
+import ErrorContext from "../context/errorContext.js";
 
-function MyVisits({ setError }) {
+import Card from "./home/Card.jsx";
+
+function MyVisits() {
+const { setError } = useContext(ErrorContext)
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);

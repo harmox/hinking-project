@@ -1,9 +1,12 @@
-import { useState, useEffect } from "react";
-import styles from "./details.module.css"
+import { useState, useEffect ,useContext} from "react";
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import weather_icons from "./icons.js"
-import { detailsGet } from "../../utils/api.js";
 import { ClipLoader } from 'react-spinners';
+import ErrorContext from "../../context/errorContext.js"
+;
+import styles from "./details.module.css"
+import weather_icons from "./icons.js"
+
+import { detailsGet } from "../../utils/api.js";
 import onDeleteClick from "./onDeleteClick.js";
 import searchPressed from "./weather.js";
 import interested from "./visits.js";
@@ -12,7 +15,8 @@ const api = {
     key: "FZP48UWCAWRCQ59J8PPXRSUAD",
     base: "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/",
 };
-function Details({ setError }) {
+function Details() {
+    const { setError } = useContext(ErrorContext)
     const navigate = useNavigate()
     const { id } = useParams();
     const [data, setData] = useState([])

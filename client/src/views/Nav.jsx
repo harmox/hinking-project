@@ -1,10 +1,9 @@
 import { NavLink, useLocation } from "react-router-dom"
-import styles from "../errors.module.css"
 
 function Navigation({ isUserLoggedIn }) {
     const location = useLocation();
     const isEditPage = location.pathname.includes("/edit");
-    return (
+    return (    
         <>
             <nav>
                 <div className="visits">{ isUserLoggedIn && <NavLink style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}} to="/profile">Profile</NavLink>}</div>

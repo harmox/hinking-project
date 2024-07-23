@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { catalogGet } from "../utils/api.js";
 import Card from "./home/Card.jsx";
 import { ClipLoader } from 'react-spinners';
+import ErrorContext from "../context/errorContext.js";
 
-function Catalog({ setError }) {
+function Catalog() {
     const [data, setData] = useState([])
     const [constant, constantSet] = useState([])
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
+    const { setError } = useContext(ErrorContext)
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
@@ -29,8 +31,7 @@ function Catalog({ setError }) {
     function buttonClick(e) {
         e.preventDefault()
         if (!search) {
-            //TODO Error show
-            return
+            return setError(`Please enter valid search params!`)
         }
         const newData = constant.filter(e => e.name.includes(search))
         setData(newData)

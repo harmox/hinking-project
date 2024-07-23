@@ -1,48 +1,36 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { registerR } from "../utils/api.js"
 import { useNavigate } from 'react-router-dom';
-import styles from "../errors.module.css"
-import { validateEmail, validatePassword } from "../errors/validations.js";
+import ErrorContext from "../context/errorContext.js";
+import isUserLogged from "../context/isUSerLogged.js";
 
-function Register({ setIsUserLoggedIn, setError }) {
+import styles from "../errors.module.css"
+import useForm from "../utils/useForm.js";
+
+function Register() {
+    const { setError } = useContext(ErrorContext)
+    const { setIsUserLoggedIn } = useContext(isUserLogged)
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.user) { navigate(`/`) }
 
     }, [])
-    const [formData, setFormData] = useState({
-        email: "",
-        username: "",
-        password: "",
-        repass: ""
-    });
     const [errors, setErrors] = useState({
         email: false,
         username: false,
         password: false,
         repass: false
     });
-
-    const onInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        // Validate email and password
-        if (name === 'email') {
-            setErrors({ ...errors, email: !validateEmail(value) });
-        }
-        if (name === 'username') {
-            setErrors({ ...errors, username: !validatePassword(value) });
-        }
-        if (name === 'password') {
-            setErrors({ ...errors, password: !validatePassword(value) });
-        }
-        if (name === 'repass') {
-            setErrors({ ...errors, repass: !validatePassword(value) });
-        }
-    };
+    const { values, changeHandler } = useForm({
+        email: ``,
+        username: ``,
+        password: ``,
+        repass: ``
+    }, setErrors, errors)
+    //TODO refactor
     async function registerHandler(e) {
         e.preventDefault()
-        const { email, username, password, repass } = formData
+        const { email, username, password, repass } = values
         try {
             if (!email || !username || !password || !repass) {
                 setError(`Please enter Email, Password and repeat Password!`)
@@ -68,7 +56,7 @@ function Register({ setIsUserLoggedIn, setError }) {
     return (
         <>
             <div className="formContainer">
-                <form className="registration" action="" onSubmit={registerHandler} onChange={onInputChange}>
+                <form className="registration" action="" onSubmit={registerHandler} onChange={changeHandler}>
 
                     <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error : ""} />
                     <input type="text" name="username" id="" placeholder="username" className={errors.username ? styles.error : ""} />

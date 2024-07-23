@@ -1,39 +1,32 @@
 import { login } from "../utils/api.js"
 import { useNavigate } from "react-router-dom"
-import styles from "../errors.module.css"
-import { useEffect, useState } from "react"
-import { validateEmail, validatePassword } from "../errors/validations.js";
+import { useEffect, useState, useContext } from "react"
 
-function LogIn({ setIsUserLoggedIn, setError }) {
+import ErrorContext from "../context/errorContext.js";
+import isUserLogged from "../context/isUSerLogged.js";
+import styles from "../errors.module.css"
+import useForm from "../utils/useForm.js";
+
+function LogIn() {
+    const { setError } = useContext(ErrorContext)
+    const { setIsUserLoggedIn } = useContext(isUserLogged)
     const navigate = useNavigate()
     useEffect(() => {
         if (localStorage.user) { navigate(`/`) }
 
     }, [])
-    const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-    });
     const [errors, setErrors] = useState({
         email: false,
         password: false,
     });
+    const { values, changeHandler } = useForm({
+        email: ``,
+        password: ``,
+    }, setErrors, errors)
 
-    const onInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-        // Validate email and password
-        if (name === 'email') {
-            setErrors({ ...errors, email: !validateEmail(value) });
-        }
-        if (name === 'password') {
-            setErrors({ ...errors, password: !validatePassword(value) });
-        }
-    };
     async function logInHandler(e) {
         e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const { email, password } = Object.fromEntries(formData)
+        const { email, password } = values
         if (!email || !password) {
             setError(`Please enter Email and Password!`)
             return
@@ -53,7 +46,7 @@ function LogIn({ setIsUserLoggedIn, setError }) {
         <>
             <div className="formContainer">
 
-                <form action="" onSubmit={logInHandler} onChange={onInputChange}>
+                <form action="" onSubmit={logInHandler} onChange={changeHandler}>
 
                     <input type="text" name="email" id="" placeholder="email" className={errors.email ? styles.error : ""} />
 

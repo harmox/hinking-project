@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState,useContext } from 'react';
+import { ClipLoader } from 'react-spinners';
+import ErrorContext from "../../context/errorContext.js";
+
 import { homeGet } from '../../utils/api.js';
 import Card from './Card.jsx';
 import styles from "../../paragraphs.module.css"
-import { ClipLoader } from 'react-spinners';
 
-function Home({ setError }) {
+function Home() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
+    const { setError } = useContext(ErrorContext)
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
