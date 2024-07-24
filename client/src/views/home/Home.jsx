@@ -1,4 +1,4 @@
-import { useEffect, useState,useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { ClipLoader } from 'react-spinners';
 import ErrorContext from "../../context/errorContext.js";
 
@@ -32,7 +32,11 @@ function Home() {
             <h1>Escape reallity and explore the horizont</h1>
 
             <div className='sigths'>
-                <h2>Most visited</h2>
+                {data?.length > 0 ? (
+                    <h2>Most visited</h2>
+                ) : (
+                    <h1>No added destinations</h1>
+                )}
                 <div className='sigthsScroll' data-mouse-down-at="0" data-prev-percentage="0">
                     {loading ? (
                         <div className="spinner-container">

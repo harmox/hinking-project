@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000
 const secret = `superBigSecret`
 
 //TODO change on deploy
-mongoose.connect(`mongodb://localhost:27017/hiking`)
+mongoose.connect(`mongodb+srv://tanivelikov12:malkiq1201@hiking.0cgkh20.mongodb.net/`)
 app.use(cors())
 app.use(express.json());
 app.use(cookieParser(secret))

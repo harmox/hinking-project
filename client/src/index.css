@@ -47,7 +47,8 @@ body {
 }
 
 
-.welcome {
+.welcome,
+.welcome404 {
   text-align: center;
 }
 
@@ -245,3 +246,23 @@ button {
   cursor: pointer;
 }
 
+
+/*======================
+    404 page
+=======================*/
+.welcome404 h1 {
+  text-shadow: 0px 15px rgba(231, 96, 96, 0.281);
+  font-size: 50px;
+}
+
+.welcome404 {
+  font-size: 25px;
+}
+
+.image404 {
+  transform: scaleX(1);
+  bottom: 0;
+  position: absolute;
+  z-index: -1;
+  height: 400px;
+}

@@ -25,7 +25,6 @@ function App() {
   useEffect(() => {
     setIsUserLoggedIn(!!localStorage.getItem('user'));
   }, []);
-  //TODO 404
   return (
     <>
       <ErrorContext.Provider value={{ setError, }}>

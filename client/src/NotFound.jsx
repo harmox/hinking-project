@@ -1,32 +1,17 @@
-import { NavLink } from "react-router-dom"
 
-function NotFound({ isUserLoggedIn }) {
+function NotFound() {
     return (
-        <div className="welcome">
-            <h1>Ooh, you are lost! Here`s a map!</h1>
-            <div className="linksOn404">
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/catalog">Catalog</NavLink>
-                {isUserLoggedIn ? (
-                    <>
-                        <NavLink
-                            to="/create"
-                        // className={isEditPage ? styles.disabledLink  : ""}
-                        // onClick={(e) => isEditPage && e.preventDefault()}
-                        >
-                            Add journey
-                        </NavLink>
-                        <NavLink to="/logout" >Logout</NavLink>
-                    </>
-                ) : (
-                    <>
-                        <NavLink to="/login" >Login</NavLink>
-                        <NavLink to="/register">Register</NavLink>
-                    </>
-                )}
-
+        <>
+            <div className="welcome404">
+                <h1>404</h1>
+                <div className="textContainer">
+                    <h3 class="h2">
+                        Look like you're lost <br />the page you are looking for is not avaible!
+                    </h3>
+                </div>
             </div>
-        </div>
+            <img className="image404" src="https://www.classdojo.com/static/3207cb0578e5a52abff41cbfcaafe999/755d8/acde998c-8197-4c7a-9294-3e16a2e8103c.png" alt="" />
+        </>
     )
 }
 export default NotFound

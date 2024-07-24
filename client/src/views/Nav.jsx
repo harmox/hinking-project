@@ -18,7 +18,7 @@ function Navigation({ isUserLoggedIn }) {
                                 style={({ isActive }) => (isActive ? { textDecoration: "underline" } : {})}
                             // onClick={(e) => isEditPage && e.preventDefault()}
                             >
-                                Add journey
+                                Add destination
                             </NavLink>
                             <NavLink to="/logout" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Logout</NavLink>
                         </div>

@@ -27,7 +27,6 @@ function Register() {
         password: ``,
         repass: ``
     }, setErrors, errors)
-    //TODO refactor
     async function registerHandler(e) {
         e.preventDefault()
         const { email, username, password, repass } = values
