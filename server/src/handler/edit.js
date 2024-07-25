@@ -5,9 +5,11 @@ module.exports = async function edit(req, res) {
     try {
         if (req.user.id == undefined) { return res.status(400).json({ message: 'Please login!' }); }
         const exist = await model.findOne({ name })
-        if (exist) {
+
+        if (exist && exist._id != req.params.id) {
             return res.status(400).json({ message: 'Name is already in the list!' });
         }
+
         const data = await model.findById(req.params.id)
         data.name = name,
             data.distance = req.body.distance,

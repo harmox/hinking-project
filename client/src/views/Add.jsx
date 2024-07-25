@@ -1,4 +1,4 @@
-import { useEffect, useState ,useContext} from "react"
+import { useEffect, useState, useContext } from "react"
 import styles from "../errors.module.css"
 import { er, isValidImageUrl } from "../errors/validations.js"
 import { useNavigate, useParams } from "react-router-dom"
@@ -130,7 +130,7 @@ function Add() {
     return (
         <>
             <div className="formContainer">
-
+                
                 <form className="addSigth" onSubmit={onSubmit} onChange={onInputChange}>
 
                     <input type="text" name="name" id="" placeholder="name" defaultValue={formData.name} className={err.name ? styles.error : ''} />
