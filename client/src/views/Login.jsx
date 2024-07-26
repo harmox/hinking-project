@@ -12,7 +12,7 @@ function LogIn() {
     const { setIsUserLoggedIn } = useContext(isUserLogged)
     const navigate = useNavigate()
     useEffect(() => {
-        if (localStorage.user) { navigate(`/`) }
+        if (sessionStorage.user) { navigate(`/`) }
 
     }, [])
     const [errors, setErrors] = useState({
@@ -35,7 +35,7 @@ function LogIn() {
             const data = await login({ email, password })
             if (data.message) { throw new Error(data.message) }
 
-            localStorage.setItem(`user`, data.userId)
+            sessionStorage.setItem(`user`, data.userId)
             setIsUserLoggedIn(true);
             navigate('/');
         } catch (err) {

@@ -34,7 +34,7 @@ function Add() {
                 try {
                     const data = await detailsGet(id)
                     setFormData(data)
-                    if (data.owner != localStorage.user) {
+                    if (data.owner != sessionStorage.user) {
                         navigate(`/`)
                     }
                     setErrors({
@@ -109,10 +109,10 @@ function Add() {
             let result;
             try {
                 if (id != undefined && id.length >= 20) {
-                    if (localStorage.user != formData.owner) { return }
+                    if (sessionStorage.user != formData.owner) { return }
                     result = await edit(id, { name, distance, time, longitude, latitude, image, description });
                 } else {
-                    result = await add({ name, distance, time, longitude, latitude, image, description, owner: localStorage.user });
+                    result = await add({ name, distance, time, longitude, latitude, image, description, owner: sessionStorage.user });
                 }
                 if (result.message) { ; setError(result.message) }
                 if (!result.data) {

@@ -33,6 +33,10 @@ p {
 }
 
 
+.visits {
+    padding: 0;
+    margin: 0;
+}
 .containerDetails {
     display: flex;
     flex-direction: column;
@@ -55,6 +59,7 @@ p {
 
 .card img {
     border-radius: 20px;
+    align-self: center;
 }
 
 .centerForm {
@@ -63,8 +68,6 @@ p {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-
-
 }
 
 .checkWeather {
@@ -76,6 +79,7 @@ p {
     height: 750px;
 
 }
+
 
 .weatherIcon {
     position: absolute;
@@ -89,7 +93,7 @@ p {
 
 .disabledLink {
     pointer-events: none;
-    background-color:  rgb(83, 83, 83);
+    background-color: rgb(83, 83, 83);
     color: rgb(0, 0, 0);
     text-decoration: none;
 }

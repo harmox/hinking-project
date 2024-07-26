@@ -11,7 +11,7 @@ function LogOut() {
         (async function () {
             try {
                 const response = await logout()
-                localStorage.clear(`user`)
+                sessionStorage.clear(`user`)
                 setIsUserLoggedIn(false)
                 navigate(`/login`)
             } catch (err) {

@@ -50,7 +50,7 @@ function Catalog() {
                         <ClipLoader color="#123abc" loading={loading} size={400} /> {/* Spinner */}
                     </div>
                 ) : (
-                    data.map(e => <Card hike={e} key={e._id} scale="200" width="300" />)
+                    data.map(e => <Card hike={e} key={e._id} scale="200px" width="300px" />)
                 )}
                 {/* {data.filter(e => e.name.includes(search)).map(e => <Card hike={e} key={e._id} scale="200" />)} */}
             </div>

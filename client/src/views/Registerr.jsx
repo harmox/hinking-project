@@ -12,7 +12,7 @@ function Register() {
     const { setIsUserLoggedIn } = useContext(isUserLogged)
     const navigate = useNavigate();
     useEffect(() => {
-        if (localStorage.user) { navigate(`/`) }
+        if (sessionStorage.user) { navigate(`/`) }
 
     }, [])
     const [errors, setErrors] = useState({
@@ -43,7 +43,7 @@ function Register() {
             const data = await registerR({ email, username, password })
             console.log(data)
             if (data.message) { throw new Error(data.message) }
-            localStorage.setItem(`user`, data.userId)
+            sessionStorage.setItem(`user`, data.userId)
             setIsUserLoggedIn(true);
             navigate('/');
         } catch (err) {

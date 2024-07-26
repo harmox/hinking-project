@@ -23,7 +23,7 @@ function App() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    setIsUserLoggedIn(!!localStorage.getItem('user'));
+    setIsUserLoggedIn(!!sessionStorage.getItem('user'));
   }, []);
   return (
     <>

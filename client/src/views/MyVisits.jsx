@@ -12,7 +12,7 @@ const { setError } = useContext(ErrorContext)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        if (!localStorage.user) { navigate(`/`) }
+        if (!sessionStorage.user) { navigate(`/`) }
         const controller = new AbortController();
         const signal = controller.signal;
         (async () => {

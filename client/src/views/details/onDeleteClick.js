@@ -1,7 +1,7 @@
 import { deleteM } from "../../utils/api.js"
 
 async function onDeleteClick(e, id, owner, { navigate }) {
-    if (localStorage.user !== owner) {
+    if (sessionStorage.user !== owner) {
         return
     }
     if (confirm(`Are you sure ?`)) {

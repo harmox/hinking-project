@@ -1,8 +1,7 @@
-import { useState, useEffect ,useContext} from "react";
+import { useState, useEffect, useContext } from "react";
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
-import ErrorContext from "../../context/errorContext.js"
-;
+import ErrorContext from "../../context/errorContext.js";
 import styles from "./details.module.css"
 import weather_icons from "./icons.js"
 
@@ -22,6 +21,7 @@ function Details() {
     const [data, setData] = useState([])
     const [owner, setIsOwner] = useState(false);
     const [visited, setVisited] = useState(false)
+    const [visitsCheked, setVisitsChecked] = useState(false)
     const [loading, setLoading] = useState(true);
 
     const [date, setDate] = useState("");
@@ -37,8 +37,9 @@ function Details() {
                     return setError(`Wrong id ??`)
                 }
                 setData(element)
-                setIsOwner(element.owner == localStorage.user)
-                if (element.visits.some(i => i._id == localStorage.user)) { setVisited(true) }
+                console.log(element)
+                setIsOwner(element.owner == sessionStorage.user)
+                if (element.visits.some(i => i._id == sessionStorage.user)) { setVisited(true) }
             } catch (err) {
                 setError(`Error with fetching data !`)
                 console.log(err.message)
@@ -47,9 +48,9 @@ function Details() {
             }
         })();
     }, [id]);
-    function visitsCheck(e) {
 
-        console.log(data.visits)
+    function visitsCheck(e) {
+        setVisitsChecked(!visitsCheked)
     }
 
     return (<>
@@ -63,8 +64,9 @@ function Details() {
                         <div className={styles.card}>
 
                             <h1>{data.name}</h1>
-                            <img src={data.image} alt="rilski" height="300" />
+                            <img src={data.image} alt="rilski" height="300" width="500px" />
                             <h3>Distance in kilometers: {data.distance}</h3>
+                            {visitsCheked && <p className={styles.visits}>{data.visits.map(e => e.username)}</p>}
                             <h3>Ascend: {data.time}<br />
                                 Ascend time is in hours and its for one way only!
                             </h3>
@@ -72,11 +74,11 @@ function Details() {
                             {owner ? (<div className={styles.buttonPair}>
                                 <Link to={`/edit/${data._id}`}><button>Edit</button> </Link>
                                 <button onClick={e => onDeleteClick(e, id, data.owner, { navigate })}>Delete</button>
-                            </div>) : (<div className={styles.buttonPair}>
+                            </div>) : sessionStorage.user ? (<div className={styles.buttonPair}>
 
-                                <button className={visited ? styles.disabledLink : ""} onClick={e => interested(e, data.owner, id, { setVisited })}>Interested</button>
+                                <button className={visited ? styles.disabledLink : ""} onClick={e => interested(e, data.owner, id, setVisited, setData, setIsOwner)}>Interested</button>
                                 <button onClick={visitsCheck}>Visits</button>
-                            </div>)}
+                            </div>) : ''}
                         </div>
                     )}
             </div>

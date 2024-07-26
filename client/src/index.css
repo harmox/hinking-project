@@ -26,12 +26,12 @@ body {
 @keyframes cloud {
 
   0% {
-    left: -100px;
+    left: -10%;
   }
 
   100% {
     opacity: 0;
-    left: 1500px;
+    left: 101%;
   }
 }
 
