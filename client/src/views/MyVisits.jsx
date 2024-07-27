@@ -43,7 +43,7 @@ const { setError } = useContext(ErrorContext)
                             <h2>{data.username}, you have {data.visits.length} visit{data.visits.length > 1 && `s`}:</h2>
                             {data.visits.map(e => <Card hike={e} key={e._id} scale="200" width="300" />)}
                         </> :
-                        (<h2>You havent visited anything yet {data.username}!</h2>)
+                        (<h2>You haven`t visited anything yet {data.username}!</h2>)
                     // data.visits.map(e => <Card hike={e} key={e._id} scale="200" width="300" />
                 )}
             </div>

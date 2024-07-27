@@ -33,7 +33,7 @@ function Catalog() {
         if (!search) {
             return setError(`Please enter valid search params!`)
         }
-        const newData = constant.filter(e => e.name.includes(search))
+        const newData = constant.filter(e => e.name.toLowerCase().includes(search.toLocaleLowerCase()))
         setData(newData)
 
     }
