@@ -1,32 +1,17 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
-import ErrorContext from "../../context/errorContext.js";
 
-import { homeGet } from '../../utils/api.js';
+
 import Card from './Card.jsx';
 import styles from "../../paragraphs.module.css"
+import useHome from './useHome.js';
 
 function Home() {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-    const { setError } = useContext(ErrorContext)
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        (async () => {
-            try {
-                const data = await homeGet({ signal });
-                setData(data);
-            } catch (error) {
-                setError(`Error with fetching data.`)
-            } finally {
-                setLoading(false);
-            }
-        })();
-        return () => {
-            controller.abort()
-        }
-    }, []);
+   
+    useHome( setData, setLoading)
+    
     return (
         <div className='welcome'>
             <h1>Escape reallity and explore the horizont</h1>

@@ -5,7 +5,7 @@ import Navigation from './views/Nav.jsx'
 import LogIn from './views/Login.jsx'
 import Register from './views/Registerr.jsx'
 import Add from './views/Add.jsx'
-import Catalog from './views/Catalog.jsx'
+import Catalog from './views/catalog/Catalog.jsx'
 import Details from './views/details/Details.jsx'
 import LogOut from './views/Logouts.jsx';
 import Home from './views/home/Home.jsx';

@@ -12,7 +12,7 @@ module.exports = async function login(req, res) {
         const match = await bcrypt.compare(password, exist.password)
         if (!match) { return res.status(400).json({ message: `Wrong password` }) }
         const token = createToken(exist);
-        res.cookie(`token`, token, { httpOnly: true, sameSite: 'Strict', secure: true })
+        res.cookie(`token`, token, { httpOnly: true, secure: true, sameSite: 'None' })
         res.status(201).json({ userId: exist._id })
     } catch (err) {
         console.log(err.message)

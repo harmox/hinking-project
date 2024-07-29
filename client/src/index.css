@@ -1,5 +1,4 @@
 body {
-  height: 100%;
   margin: 0;
   overflow: hidden;
   background: url(https://picsum.photos/seed/picsum/1200/600) no-repeat center center fixed;
@@ -26,12 +25,12 @@ body {
 @keyframes cloud {
 
   0% {
-    left: -10%;
+    left: 0%;
   }
 
   100% {
     opacity: 0;
-    left: 101%;
+    left: 100%;
   }
 }
 
@@ -82,7 +81,7 @@ nav a:hover {
 
 .sigthsScroll {
   display: flex;
-  padding: 20px;
+  padding-bottom: 20px;
   justify-content: space-around;
 }
 
