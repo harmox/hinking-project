@@ -12,11 +12,11 @@ import Home from './views/home/Home.jsx';
 import Error from './errors/Error.jsx';
 import NotFound from './NotFound.jsx';
 import MyVisits from './views/MyVisits.jsx';
+
 import ErrorContext from './context/errorContext.js';
 import isUserLogged from './context/isUSerLogged.js'
-
-
-
+import RouterGuard from './views/guards/RouterGuard.jsx';
+import LogRegGuard from './views/guards/LoginRegGuard.jsx';
 
 function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -24,24 +24,30 @@ function App() {
 
   useEffect(() => {
     setIsUserLoggedIn(!!sessionStorage.getItem('user'));
-  }, []);
+  }, [isUserLoggedIn]);
   return (
     <>
       <ErrorContext.Provider value={{ setError, }}>
-        <isUserLogged.Provider value={{ setIsUserLoggedIn }}>
-          <Navigation isUserLoggedIn={isUserLoggedIn} />
+        <isUserLogged.Provider value={{ isUserLoggedIn, setIsUserLoggedIn }}>
+          <Navigation />
           {error && <Error error={error} />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/details/:id" element={<Details />} />
-            <Route path="/edit/:id" element={<Add />} />
 
-            <Route path="/create" element={<Add />} />
+            <Route element={<RouterGuard />}>
+              <Route path="/create" element={<Add />} />
+              <Route path="/edit/:id" element={<Add />} />
+              <Route path="/profile" element={<MyVisits />} />
+            </Route>
+
+            <Route element={<LogRegGuard />}>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<LogIn />} />
+            </Route>
+
             <Route path="/catalog" element={<Catalog />} />
-            <Route path="/profile" element={<MyVisits />} />
-            <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<LogOut />} />
-            <Route path="/login" element={<LogIn />} />
 
             <Route path="*" element={< NotFound isUserLoggedIn={isUserLoggedIn} />} />
           </Routes >

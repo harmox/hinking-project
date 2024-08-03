@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { registerR } from "../utils/api.js"
 import { useNavigate } from 'react-router-dom';
 import ErrorContext from "../context/errorContext.js";
@@ -11,10 +11,6 @@ function Register() {
     const { setError } = useContext(ErrorContext)
     const { setIsUserLoggedIn } = useContext(isUserLogged)
     const navigate = useNavigate();
-    useEffect(() => {
-        if (sessionStorage.user) { navigate(`/`) }
-
-    }, [])
     const [errors, setErrors] = useState({
         email: false,
         username: false,

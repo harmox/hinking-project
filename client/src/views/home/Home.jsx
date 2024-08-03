@@ -5,6 +5,7 @@ import { ClipLoader } from 'react-spinners';
 import Card from './Card.jsx';
 import styles from "../../paragraphs.module.css"
 import useHome from './useHome.js';
+import effect from './effect.js';
 
 function Home() {
     const [data, setData] = useState([])
@@ -12,9 +13,10 @@ function Home() {
    
     useHome( setData, setLoading)
     
+    
     return (
         <div className='welcome'>
-            <h1>Escape reallity and explore the horizont</h1>
+            <h1 data-value="Not all who wander are lost." onClick={effect}>Escape Reality, Embrace the Horizon</h1>
 
             <div className='sigths'>
                 {data?.length > 0 ? (
@@ -35,7 +37,11 @@ function Home() {
                     A vast network of trails exists in the Bulgarian mountains and numerous mountain huts and hotels, and family guesthouses are waiting for you to offer their hospitality and their delicious home made food.</p>
             </div>
         </div>
+        
     )
 }
+
+
+
 
 export default Home

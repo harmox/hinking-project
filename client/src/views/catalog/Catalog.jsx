@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import Card from "../home/Card.jsx";
 import { ClipLoader } from 'react-spinners';

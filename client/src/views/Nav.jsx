@@ -1,12 +1,13 @@
-import { NavLink, useLocation } from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import { useContext } from "react";
+import isUserLogged from "../context/isUSerLogged.js"
 
-function Navigation({ isUserLoggedIn }) {
-    const location = useLocation();
-    const isEditPage = location.pathname.includes("/edit");
-    return (    
+function Navigation() {
+    const { isUserLoggedIn } = useContext(isUserLogged)
+    return (
         <>
             <nav>
-                <div className="visits">{ isUserLoggedIn && <NavLink style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}} to="/profile">Profile</NavLink>}</div>
+                <div className="visits">{isUserLoggedIn && <NavLink style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}} to="/profile">Profile</NavLink>}</div>
                 <div className="links">
                     <NavLink to="/" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Home</NavLink>
                     <NavLink to="/catalog" style={({ isActive }) => isActive ? { textDecoration: `underline` } : {}}>Catalog</NavLink>
