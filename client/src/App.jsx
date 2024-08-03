@@ -11,7 +11,7 @@ import LogOut from './views/Logouts.jsx';
 import Home from './views/home/Home.jsx';
 import Error from './errors/Error.jsx';
 import NotFound from './NotFound.jsx';
-import MyVisits from './views/MyVisits.jsx';
+import MyVisits from './views/profile/MyVisits.jsx';
 
 import ErrorContext from './context/errorContext.js';
 import isUserLogged from './context/isUSerLogged.js'

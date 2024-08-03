@@ -1,34 +1,14 @@
-import { useEffect, useState, useContext } from "react"
+import { useState } from "react"
 import { ClipLoader } from "react-spinners";
-import { myVisits } from "../utils/api.js";
 
-import ErrorContext from "../context/errorContext.js";
-
-import Card from "./home/Card.jsx";
+import Card from "../home/Card.jsx";
+import useProfile from "./useProfile.js";
 
 function MyVisits() {
-    const { setError } = useContext(ErrorContext)
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-        (async () => {
-            try {
-                const data = await myVisits({ signal })
-                data.sum = 0
-                data.creations.forEach(e => data.sum += e.visits.length)
-                setData(data)
-            } catch (err) {
-                setError(`Error with fetching data.`)
-            } finally {
-                setLoading(false);
-            }
-        })();
-        return () => {
-            controller.abort()
-        }
-    }, []);
+    
+    useProfile(setData, setLoading)
 
     console.log(data?.sum)
     return (
