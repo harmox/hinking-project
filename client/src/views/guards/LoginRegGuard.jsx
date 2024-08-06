@@ -5,7 +5,6 @@ import isUserLogged from "../../context/isUSerLogged.js"
 
 function LogRegGuard() {
     const { isUserLoggedIn } = useContext(isUserLogged)
-    console.log(`user is`, isUserLoggedIn)
     return !isUserLoggedIn ? <Outlet /> : <Navigate to="/" />
 
 }

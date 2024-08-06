@@ -10,7 +10,6 @@ function MyVisits() {
     
     useProfile(setData, setLoading)
 
-    console.log(data?.sum)
     return (
         <div className='catalog'>
             {loading ? (

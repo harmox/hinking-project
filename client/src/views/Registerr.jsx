@@ -37,7 +37,6 @@ function Register() {
             }
 
             const data = await registerR({ email, username, password })
-            console.log(data)
             if (data.message) { throw new Error(data.message) }
             sessionStorage.setItem(`user`, data.userId)
             setIsUserLoggedIn(true);

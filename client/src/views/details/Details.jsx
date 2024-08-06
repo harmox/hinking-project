@@ -37,7 +37,6 @@ function Details() {
                     return setError(`Wrong id ??`)
                 }
                 setData(element)
-                console.log(element)
                 setIsOwner(element.owner == sessionStorage.user)
                 if (element.visits.some(i => i._id == sessionStorage.user)) { setVisited(true) }
             } catch (err) {

@@ -1,6 +1,6 @@
 
 const URLS = {
-    base: `http://localhost:3000`,
+    base: `https://europe-west1-hiking-1212.cloudfunctions.net/api`,
     home: `/`,
     register: `/register`,
     logout: `/logout`,
@@ -29,7 +29,6 @@ async function fetching(method, url, data, signal) {
     }
     try {
         const response = await fetch(url, opitons)
-        console.log(response)
         if (!response.ok) {
             if (response.status == `400`) {
                 return response.json()

@@ -30,7 +30,7 @@ function Home() {
                             <ClipLoader color="#123abc" loading={loading} size={400} /> {/* Spinner */}
                         </div>
                     ) : (
-                        data.map(e => <Card hike={e} key={e._id} scale="300" width="500" />)
+                        data?.map(e => <Card hike={e} key={e._id} scale="300" width="500" />)
                     )}
                 </div>
                 <p className={styles.p}><b>Bulgaria</b>is a hiking paradise. This relatively small country abounds in mountains – big and small, high and not so high. <br />In the alpine type mountains, such as the <b>Rila</b> Mountains and <b>Pirin</b> Mountains, pyramidal peaks and steep aretes divide magnificent corries with cobalt blue glacial lakes. Older mountains such as the <b>Stara Planina</b> Mountains (the Balkan Range) and <b>Rhodopes</b> Mountains, are a mixture of gently rolling hills and mighty rounded peaks, topped with rocky wreaths and rugs of flowers and green grass. <br /> Slopes are densely forested with oak, beech, spruce and pine species.

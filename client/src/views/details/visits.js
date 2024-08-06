@@ -7,7 +7,6 @@ async function interested(e, owner, id, setVisited, setData, setIsOwner) {
 
         const response = await visits(id, { userId: sessionStorage.user })
         if (!response) { return }
-        console.log(response)
         setData(response)
         setIsOwner(response.owner === sessionStorage.user)
         setVisited(true)

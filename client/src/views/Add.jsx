@@ -98,7 +98,6 @@ function Add() {
             setErrors({ ...err, description: er(value, 20) });
         }
     };
-    console.log(err)
     async function onSubmit(e) {
         e.preventDefault()
         const { name, distance, time, longitude, latitude, image, description } = formData
