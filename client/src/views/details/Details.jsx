@@ -46,7 +46,7 @@ function Details() {
                 setLoading(false)
             }
         })();
-    }, [id]);
+    }, [id, visited]);
 
     function visitsCheck(e) {
         setVisitsChecked(!visitsCheked)
@@ -65,10 +65,10 @@ function Details() {
                             <h1>{data.name}</h1>
                             <img src={data.image} alt="rilski" height="300" width="500px" />
                             <h3>Distance in kilometers: {data.distance}</h3>
-                            {visitsCheked && <p className={styles.visits}>{data.visits.map(e => e.username)}</p>}
                             <h3>Ascend: {data.time}<br />
                                 Ascend time is in hours and its for one way only!
                             </h3>
+                            {visitsCheked && <p className={styles.visits}>{data.visits.map(e => `${e.username},`)}</p>}
                             <p className={styles.description}>{data.description}</p>
                             {owner ? (<div className={styles.buttonPair}>
                                 <Link to={`/edit/${data._id}`}><button>Edit</button> </Link>

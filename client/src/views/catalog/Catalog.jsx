@@ -1,16 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClipLoader } from 'react-spinners';
 
 import Card from "../home/Card.jsx";
-import { ClipLoader } from 'react-spinners';
 import useCatalog from "./useCatalog.js";
+import ErrorContext from "../../context/errorContext.js";
 
 function Catalog() {
     const [data, setData] = useState([])
     const [constant, constantSet] = useState([])
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
-    
-    useCatalog( setData, setLoading, constantSet)
+    const { setError } = useContext(ErrorContext)
+
+    useCatalog(setData, setLoading, constantSet)
 
     function searchPressed(e) {
         e.preventDefault()
@@ -19,13 +21,13 @@ function Catalog() {
         }
         const newData = constant.filter(e => e.name.toLowerCase().includes(search.toLocaleLowerCase()))
         setData(newData)
-    }
+    }   
     return (
         //TODO
         <>
             <div className="catalog">
                 <form action="" className="searchForm" onSubmit={searchPressed}>
-                    <input type="text" name="search" id="searchParam" placeholder="search" className="search" onChange={(e) => setSearch(e.target.value)} />
+                    <input type="text" name="search" id="searchParam" placeholder="search by name" className="search" onChange={(e) => setSearch(e.target.value)} />
                     <button type="submit" id="searchButton">search</button>
                 </form>
                 {loading ? (
